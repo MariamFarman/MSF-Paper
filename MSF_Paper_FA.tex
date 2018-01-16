@@ -252,7 +252,7 @@ induces on  cytokine is via TLR4-mediated signaling~\cite{Olejnik}, Gene enrichm
 points and also shows apoptosis at the earliest time-point, where infection
 just started.
 
-Likewise we compared gene enrichment results of sub-module genes identified by \texttt{MSF} using Reactome FI to the Reactome pathway enrichment analysis results. Although MSF and Reactome show good agreement on the dis-regulated pathways e.g Signaling by Interleukins, Interleukin-10 signaling, Cytokine Signaling in Immune system, Chemokine receptors bind chemokines, RIG-I/MDA5 mediated induction of IFN-alpha/beta pathways, NF-kB activation, Reactome as well fails to identify the Toll-like recpetor signaling. On the other hand, \texttt{MSF} could not identify the dis-regulation of phases of cell cycle. This shows that \texttt{MSF} is able to identify the modulated genes in the sub-modules at the earliest time-point of infection even though when the signal transduction was weak.
+Likewise we compared gene enrichment results of sub-module genes identified by \texttt{MSF} using Reactome FI to the Reactome pathway enrichment analysis results. Although MSF and Reactome show good agreement on the dis-regulated pathways e.g Signaling by Interleukins, Interleukin-10 signaling, Cytokine Signaling in Immune system, Chemokine receptors bind chemokines, RIG-I/MDA5 mediated induction of IFN-alpha/beta pathways, NF-kB activation, Reactome as well fails to identify the Toll-like receptor signaling. On the other hand, \texttt{MSF} could not identify the dis-regulation of phases of cell cycle. This shows that \texttt{MSF} is able to identify the modulated genes in the sub-modules at the earliest time-point of infection even though when the signal transduction was weak.
 
 \subsection*{Robustness}
 
@@ -261,7 +261,7 @@ distributed noise was added to the sample read counts.
 Then DGEA was carried out on the disturbed data with the
 same parameters as for the native data, followed by analysis with
 \texttt{MSF}. Using this criteria, the goal was to spot almost
-identical modulated sub-paths in the real and noisy data. 
+identical modulated sub-paths in the real and noisy data. This procedure was carried out 100 times and every time the genes from the sub-modules identified from noisy data were compared to the sub-modules identified from the native data. The robustness of MSF for the three time-points is shown in~(Fig.~2). For the last time-point (2dpi) 84\% genes of the sub-modules from native data were retrieved, for 1dpi the robustness was about 79\%. The robustness was the lowest at 6hpi nearly 71\%, this could be due to that the infection merely started and the signal transdcution was weak as compared to the later time-points and over that Poisson distributed noise was added to the data.
 
 
 Simulation was also conducted on \texttt{MSF} to test the results
