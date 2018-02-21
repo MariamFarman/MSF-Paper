@@ -284,17 +284,18 @@ make claims that cannot be supported.
 
 \subsection*{Availability of data and material}
 
-The Ebola infection dataset analyzed during the current study are
+The Ebola infection RNAseq dataset analyzed during the current study are
 available in the GEO repository, {\scriptsize
-  https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE84188.}  The
+  https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE84188.}  The cell signaling
 network file used is from Reactome Functional interactions (FIs)
 Version 2016
 
 
 \subsection*{Author contributions}
-In order to give appropriate credit to each author of an article, the individual
-contributions of each author to the manuscript should be detailed in this section. We
-recommend using author initials and then stating briefly how they contributed.
+FA proposed the idea. MF implemented the method. MF designed the benchmark
+data set. MF analyzed the benchmark results. MF, FA, and IH contributed to
+the manuscript writing. MF produced all figures. All authors read and
+approved the final manuscript.
 
 \subsection*{Competing interests}
 
@@ -302,21 +303,15 @@ The authors declare that they have no competing interests.
 
 
 \subsection*{Grant information}
-Please state who funded the work discussed in this article, whether it is your employer,
-a grant funder etc. Please do not list funding that you have that is not relevant to this
-specific piece of research. For each funder, please state the funder’s name, the grant
-number where applicable, and the individual to whom the grant was assigned.
-If your work was not funded by any grants, please include the line: ‘The author(s)
-declared that no grants were involved in supporting this work.’
+
+This work was funded by the FWF (“Fonds zur Förderung der wissenschaftlichen Forschung”) within the project Internationalen Kooperationsprojektes - Intl cooperation Project (Joint Project - Lead Agency Verfahren) with the project number (I 1988-B22). The grant was assigned to Ivo Hofacker
+
 
 \subsection*{Acknowledgements}
-This section should acknowledge anyone who contributed to the research or the
-article but who does not qualify as an author based on the criteria provided earlier
-(e.g. someone or an organisation that provided writing assistance). Please state how
-they contributed; authors should obtain permission to acknowledge from all those
-mentioned in the Acknowledgements section.
 
+We thank all our colleagues who provided insight and expertise that greatly assisted the research and all reviewers for their constructive criticism.
 
+\newpage
 
 \begin{thebibliography}{9}
 	 
@@ -382,30 +377,30 @@ mentioned in the Acknowledgements section.
 	
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=10.0cm]{Git/MSF_Paper/Tgfb1} 
+		\includegraphics[width=10.0cm]{Documents/PhDThesis/MSFPaper/Tgfb1} 
 		\caption{}
 	\end{subfigure}
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=10.0cm]{Git/MSF_Paper/TGFBstep1}
+		\includegraphics[width=10.0cm]{Documents/PhDThesis/MSFPaper/TGFBstep1}
 		\caption{}
 	\end{subfigure}
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=10.0cm]{Git/MSF_Paper/TGFBstep2} 
+		\includegraphics[width=10.0cm]{Documents/PhDThesis/MSFPaper/TGFBstep2} 
 		\caption{}
 	\end{subfigure}
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=10.0cm]{Git/MSF_Paper/GFBstep3}
+		\includegraphics[width=10.0cm]{Documents/PhDThesis/MSFPaper/TGFBstep3}
 		\caption{}
 	\end{subfigure}
-	\caption{Overview of \texttt{MSF} process showing the steps to identify the modulated sub-graphs. (a) showing a network of genes with green nodes as genes with \textit{p}-values $< $ 0.05, and blue nodes are genes with \textit{p}-values $>$ 0.05, (b) the genes circled red show the two initial modulated sub-graphs, sub-graph1 found one with M,K,C and the second modulated sub-graph2 S,V,T, (c) shows the modulated sub-graph1 being extended to M,K,C,A,D, (d) shows both the modulated sub=paths merged with the addition of 3 genes Z,W,P.}
+	\caption{Overview of \texttt{MSF} process showing the steps to identify the modulated sub-graphs. (a) showing a network of genes with green nodes as genes with \textit{p}-values $< $ 0.05, and blue nodes are genes with \textit{p}-values $>$ 0.05, (b) the genes circled red show the two initial modulated sub-graphs, sub-graph1 found one with M,K,C and the second modulated sub-graph2 S,V,T, (c) shows the modulated sub-graph1 being extended to M,K,C,A,D, (d) shows both the modulated sub-graphs merged with the addition of 3 genes Z,W,P.}
 \end{figure*}
 
 \begin{figure*}
 	\centering
-	\includegraphics[width=1.7\linewidth]{Git/MSF_Paper/Merged_Network}
+	\includegraphics[width=1.6\linewidth]{ModulatesSubPaths/MSFData/Ebola6H/Merged_Network}
 	\caption{Modulated Sub-graph from 6hpi}
 \end{figure*}
 
