@@ -242,7 +242,7 @@ based on the individual DGEA alone. These sources will reduce the search space f
 
 \subsection*{Modulated sub-graphs at 6hpi}
 
-The connected modulated sub-graphs from 6hpi are shown in~(Fig.~2). The sub-graph shows different colors for the predefined  KEGG pathways and how they are connected to each other. The RIG-like receptor signaling in connected to Toll-like receptor, which intern connects to MAPK signaling, JAK-STAT signalling, CYtokine-cytokine signaling, Chemokine receptor signaling and TNF signaling. These pathways could be seen further leading to WNT Signaling, P13K-Akt signaling.
+The connected modulated sub-graphs from 6hpi are shown in~(Fig.~2). The sub-graph shows different colors for the predefined  KEGG pathways and how they are connected to each other. The KEGG enrichment and visualization on the modulated sub-graph was done using StringApp~\cite{StringApp} in Cytoscape. The sub-graph shows RIG-like receptor signaling is connected to Toll-like receptor, which intern connects to MAPK signaling, JAK-STAT signalling, Cytokine-cytokine signaling, Chemokine receptor signaling and TNF signaling. These pathways could be seen further leading to WNT Signaling and P13K-Akt signaling.
 
 From the other side the ECM receptor interaction is seen to lead to Focal adhesion which regulates the P13k-Akt signaling. Finally P13k-Akt signaling leads to FoxO signaling which eventually connects to cell cycle. TNF, P13k-Akt and FoxO signaling activates apoptosis and autophagy.
 
@@ -278,9 +278,7 @@ in view of prior work in this field.
 
 \section*{Conclusions}
 
-Please state what you think are the main conclusions that can be
-realistically drawn from the findings in the paper, taking care not to
-make claims that cannot be supported.
+\textbf{MSF} is a fast and robust tool to find modulated sub-graphs from a given network. So far, it is the only tool from existing approaches that builds the modulated sub-graph from scratch using the network and DEG, where the predefined pathways could be seen connected to each other. The Robustness analysis shows that \textbf{MSF} is robust against noise and thus finds core modulated sub-graphs even if the DGEA is not carried out properly. Alongside with \textbf{MSF}, we provide a good directed cell signaling network.
 
 \subsection*{Availability of data and material}
 
@@ -309,9 +307,8 @@ This work was funded by the FWF (“Fonds zur Förderung der wissenschaftlichen 
 
 \subsection*{Acknowledgements}
 
-We thank all our colleagues who provided insight and expertise that greatly assisted the research and all reviewers for their constructive criticism.
+We thank all our colleagues who provided insight and expertise that greatly assisted the research and all reviewers for their constructive criticism. \newpage 
 
-\newpage
 
 \begin{thebibliography}{9}
 	 
@@ -367,6 +364,9 @@ We thank all our colleagues who provided insight and expertise that greatly assi
 	
 	\bibitem{Tarca}
 	Tarca, A. L., Draghici, S., Khatri, P., Hassan, S. S., Mittal, P., Kim, J., … Romero, R. (2009). A novel signaling pathway impact analysis. Bioinformatics, 25(1), 75–82. http://doi.org/10.1093/bioinformatics/btn577
+	
+	\bibitem{StringApp}
+	http://apps.cytoscape.org/apps/stringapp
 	
 	
 \end{thebibliography}
