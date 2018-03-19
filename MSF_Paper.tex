@@ -1,30 +1,11 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Welcome to Overleaf --- just edit your article on the left,
-% and we'll compile it for you on the right. If you give
-% someone the link to this page, they can edit at the same
-% time. See the help menu above for more info. Enjoy!
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% For more detailed article preparation guidelines, please see:
-% http://f1000research.com/author-guidelines
-
-\documentclass[10pt,a4paper,twocolumn]{article}
-\usepackage{f1000_styles}
-
-%% Default: numerical citations
-\usepackage[numbers]{natbib}
-
-%% Uncomment this lines for superscript citations instead
-% \usepackage[super]{natbib}
-
-%% Uncomment these lines for author-year citations instead
-% \usepackage[round]{natbib}
-% \let\cite\citep
-
+\documentclass[twocolumn]{article}
+\usepackage{authblk}
+\usepackage{blindtext}
+\usepackage{multicol}% http://ctan.org/pkg/multicols
+\usepackage{graphicx}
 \usepackage{subcaption}
-
+\usepackage{cite}
+\usepackage[table,xcdraw]{xcolor}
 \newcommand{\FA}[1]{\begingroup\color{magenta}#1\endgroup}
 \newcommand{\TODO}[1]{\begingroup\color{red}#1\endgroup}
 %opening
@@ -33,46 +14,32 @@
 
 \title{\textit{MSF: Modulated Sub-graph Finder} }
 
-\author[1]{Mariam R. Farman}
+\author[1]{Mariam R Farman}
 \author[1,2]{Fabian Amman}
-\author[1]{Ivo L. Hofacker}
+\author[1]{Ivo L Hofacker}
 \affil[1]{Institute for Theoretical Chemistry,Theoretical Biochemistry Group,University of Vienna,Austria}
 \affil[2]{Department of Chromosome Biology, Max F. Perutz Laboratories,University of Vienna,Austria}
 
 
 
 \maketitle
-\thispagestyle{fancy}
 
 \begin{abstract}
-
-High throughput techniques such as RNA-seq or microarray analysis have proven to be
-invaluable for the characterization of global transcriptional gene activity
-changes due to external stimuli or diseases. Differential gene expression analysis
-(DGEA) is the first step in the course of data interpretation, typically producing
-lists of of dozens to thousands of differentially expressed genes. To further guide
-the interpretation of these lists, different pathway analysis approaches have been
-developed. Most (\TODO{all?}) of which classify genes into set of genes, i.e. a pathway,
-which do interact with each other function in a common biological process. Regardless
-of technical differences, all these methods do not properly account for cross talk
-between different pathways and rely on binary classification into differentially
-expressed gene and unaffected genes based on an arbitrarily set p-value cut-off.
-
-To overcome this limitation, we developed a novel approach to identify concertedly
-modulated sub-graphs in the global cell signaling network, based on the DGEA results
-of all genes tested. Thereby, expression patterns of genes are integrated according
-to the topology of their interactions and allow potentially to read the flow of
-information from the perturbation source to the effectors. The described software,
-
+Differentially expressed genes play an important role in giving
+insights to a phenotype. These DEGs are then used to identify the
+pathways altered during changing biological conditions. We developed a
+novel approach to find the maximal significantly dis-regulated
+sub-graphs or cluster of genes from the cell signaling network, giving
+these sub-graphs an overall significance of modulation by combining the
+individual \textit{p}-values of the genes.
 \end{abstract}
 
 \section*{Keywords}
 
 Differentially expressed genes, Pathway analysis, Combining \textit{p}-value, Cell signaling network, Modulated Sub-graphs
 
-\clearpage
 
-\section*{Introduction}
+\section*{Background}
 
 High throughput sequencing techniques have been widely used to yield
 the differentially expressed genes (DEG)~\cite{DEG}. To this end,
@@ -319,11 +286,75 @@ We thank all our colleagues who provided insight and expertise that greatly assi
 \subsection*{Supplementary Material}
 
 The supplementary file contains tables of comparison between \textbf{MSF} identified sub-graph gene enrichment with SPIA and Reactome pathway analysis.
+\clearpage
 
-{\small\bibliographystyle{unsrtnat}
-\bibliography{MSF_Paper_FA}}
 
-\bigskip
+\begin{thebibliography}{9}
+
+	\bibitem{DEG}
+	Malone, J. H., \& Oliver, B. (2011). Microarrays, deep sequencing and the true measure of the transcriptome. BMC Biology, 9(1), 34. doi:10.1186/1741-7007-9-34
+	\bibitem{Khatri2012}
+	Khatri, P., Sirota, M., \& Butte, A. J. (2012). Ten Years of Pathway Analysis: Current Approaches and Outstanding Challenges. PLoS Computational Biology, 8(2). doi:10.1371/journal.pcbi.1002375
+	\bibitem{Kegg}
+	Kanehisa, M. (2000). KEGG: Kyoto Encyclopedia of Genes and Genomes. Nucleic Acids Research, 28(1), 27-30. doi:10.1093/nar/28.1.27
+	\bibitem{Reactome}
+	Croft, D., \& Croft, D. (2010). Reactome: A database of biological pathways. Nature Precedings. doi:10.1038/npre.2010.5025
+	\bibitem{Campos}
+	García-Campos, M. A., Espinal-Enríquez, J., \& Hernández-Lemus, E. (2015). Pathway Analysis: State of the Art. Frontiers in Physiology, 6. doi:10.3389/fphys.2015.00383
+	\bibitem{Bayer}
+	Bayerlová, M., Jung, K., Kramer, F., Klemm, F., Bleckmann, A., \& Beißbarth, T. (2015). Comparative study on gene set and pathway topology-based enrichment methods. BMC Bioinformatics, 16(1). doi:10.1186/s12859-015-0751-5
+	\bibitem{Hartung}
+	Hartung, J. (1999). A Note on Combining Dependent Tests of Significance. Biometrical Journal, 41(7), 849-855. doi:10.1002/(sici)1521-4036(199911)41:7<849::aid-bimj849>3.0.co;2-t 5
+
+	\bibitem {Prins}
+	Prins, K., Cardenas, W. and Basler, C. (2009). Ebola Virus Protein VP35 Impairs the Function of Interferon Regulatory Factor-Activating Kinases IKK and TBK-1. Journal of Virology, 83(7), pp.3069-3077.
+
+	\bibitem {Konde}
+	Konde, M., Baker, D., Traore, F., Sow, M., Camara, A., Barry, A., Mara, D., Barry, A., Cone, M., Kaba, I., Richard, A., Beavogui, A., Günther, S., Pintilie, M. and Fish, E. (2017). Interferon β-1a for the treatment of Ebola virus disease: A historically controlled, single-arm proof-of-concept trial. PLOS ONE, 12(2).
+
+	\bibitem {Rhein}
+	Rhein, B., Powers, L., Rogers, K., Anantpadma, M., Singh, B., Sakurai, Y., Bair, T., Miller-Hunt, C., Sinn, P., Davey, R., Monick, M. and Maury, W. (2015). Interferon-γ Inhibits Ebola Virus Infection. PLOS Pathogens, 11(11), p.e1005263.
+
+	\bibitem {Falasca}
+	Falasca, L., Agrati, C., Petrosillo, N., Di Caro, A., Capobianchi, M., Ippolito, G. and Piacentini, M. (2015).
+	 Molecular mechanisms of Ebola virus pathogenesis: focus on cell death. Cell Death and Differentiation, 22(8), pp.1250-1259.
+
+	\bibitem {Cardenas}
+	Cardenas, W., Loo, Y., Gale, M., Hartman, A., Kimberlin, C., Martinez-Sobrido, L., Saphire, E. and Basler, C. (2006). Ebola Virus VP35 Protein Binds Double-Stranded RNA and Inhibits Alpha/Beta Interferon Production Induced by RIG-I Signaling. Journal of Virology, 80(11), pp.5168-5178.
+
+	\bibitem {Olejnik}
+	Olejnik, J., Forero, A., Deflubé, L., Hume, A., Manhart, W., Nishida, A., Marzi, A., Katze, M., Ebihara, H., Rasmussen, A. and Mühlberger, E. (2017). Ebolaviruses Associated with Differential Pathogenicity Induce Distinct Host Responses in Human Macrophages. Journal of Virology, 91(11), pp.e00179-17.
+
+	\bibitem {Dilley}
+	Dilley, K., Voorhies, A., Luthra, P., Puri, V., Stockwell, T., Lorenzi, H., Basler, C. and Shabman, R. (2017). The Ebola virus VP35 protein binds viral immunostimulatory and host RNAs identified through deep sequencing. PLOS ONE, 12(6), p.e0178717.
+
+
+	\bibitem{Michalak}
+	Michalak, P. (2008). Coexpression, coregulation, and cofunctionality of neighboring genes in eukaryotic genomes. Genomics, 91(3), 243-248. doi:10.1016/j.ygeno.2007.11.002
+
+	\bibitem{Cyto}
+	http://www.cytoscape.org/
+
+	\bibitem{Cytokegg}
+	http://apps.cytoscape.org/apps/cytokegg
+
+	\bibitem{Reactome}
+	https://wiki.reactome.org/index.php?title=ReactomeFIViz
+
+	\bibitem{Tarca}
+	Tarca, A. L., Draghici, S., Khatri, P., Hassan, S. S., Mittal, P., Kim, J., … Romero, R. (2009). A novel signaling pathway impact analysis. Bioinformatics, 25(1), 75–82. http://doi.org/10.1093/bioinformatics/btn577
+
+	\bibitem{StringApp}
+	http://apps.cytoscape.org/apps/stringapp
+
+	\bibitem{Veljkovic}
+	Veljkovic, V., Glisic, S., Muller, C. P., Scotch, M., Branch, D. R., Perovic, V. R., … Colombatti, A. (2015). In silico analysis suggests interaction between Ebola virus and the extracellular matrix. Frontiers in Microbiology, 6, 135. http://doi.org/10.3389/fmicb.2015.00135
+
+	\bibitem{edgeR}
+	Robinson, M. D., Mccarthy, D. J., \& Smyth, G. K. (2009). EdgeR: a Bioconductor package for differential expression analysis of digital gene expression data. Bioinformatics, 26(1), 139-140. doi:10.1093/bioinformatics/btp616
+
+
+\end{thebibliography}
 
 
 
