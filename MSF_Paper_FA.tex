@@ -192,16 +192,15 @@ information obtained from DGEA into understandable knowledge of signal
 transduction of genes and thereby being a valuable complement to existing
 pathway based methods. \texttt{MSF} is freely accessible on github.
 
-\TODO{FA until here}.
-
 \section*{Methods}
-\texttt{MSF} is developed as a novel heuristic approach in Java to
-find the modulated sub-graphs of gene interactions from the cell
-signaling network. \texttt{MSF} does not use predefined gene sets in
-functional units, it builds up the sub-graphs from scratch using the
-whole cell signaling network from Reactome. The network has nodes
-corresponding to genes and edges representing their directed
-regulating interactions.
+\texttt{MSF} is developed as a novel heuristic approach to
+find concertedly modulated sub-graphs in networks of biological interactions.
+\texttt{MSF} does not use predefined gene sets grouped into
+functional units, but rather relies purely on the network of interacting genes.
+The inputed network consists of nodes corresponding to genes and edges
+representing interactions. Furthermore it utilizes comprehensive results from a
+differential gene expression analysis to discover the sub-graphs, or modules, which
+are as a whole modulated.
 
 \texttt{MSF} uses the individual gene's \textit{p}-values generated
 from the DGEA. The \textit{p}-value expresses the probability that the
@@ -215,48 +214,89 @@ distribution function, individual gene \textit{p}-values are first
 transformed to their corresponding normal score. Then using these
 normal scores, the correlation between genes is calculated, the normal
 scores and correlation are applied to the inverse normal function to
-calculate the individual \textit{p}-value for a sub-graph. An overall
-\textit{p}-value of a sub-graph will express the significance of all
-genes in the sub-graph being modulated together.
-
-
+calculate the combined \textit{p}-value for all genes examined, namely the
+examined sub-graph. The combined \textit{p}-value of a sub-graph will
+express the significance of all genes in the sub-graph being modulated
+together. Thereby, the information from the different genes are used as,
+although not independent, replicated measurement of the behavior of the whole
+sub-graph. This potentially increases the power to detect also significant
+sub-graphs consisting of genes which are not significant on there own.
+\newline
 
 \subsection*{Overview of our method}
 
 To reduce the complexity to score all possible connected sub-graphs
 \texttt{MSF} applies a three steps heuristic as described in the
-following.The pipeline of identification of modulated sub-graphs from
-a network by \texttt{MSF} is depicted in Fig (1).
-\newline
+following. The proceeding identification of modulated sub-graphs from
+a network by \texttt{MSF} is presented graphical and as pseudocode in
+Fig.~\ref{fig:algorithm}. \TODO{add pseudocode or better replace figure with pseudocode}
+
+\begin{figure}[ht!]
+		\centering
+	\fbox{
+		\begin{minipage}{8 cm}
+
+	\begin{subfigure}{.6\textwidth}
+		\centering
+		\includegraphics[width=6.5cm]{Tgfb1.png}
+		\caption{Input}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=6.5cm]{TGFBstep1.png}
+		\caption{Step 1}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=6.5cm]{TGFBstep2.png}
+		\caption{Step 2}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=6.5cm]{TGFBstep3.png}
+		\caption{Step 3}
+	\end{subfigure}
+	\caption{Overview of \texttt{MSF} process steps exemplified on a simplified toy
+          example. (a) Input:
+          showing a network of genes with green nodes as genes with
+          \textit{p}-values $< $ 0.05, and blue nodes are genes with
+          \textit{p}-values $>$ 0.05, (b) Step 1: genes circled red
+          show the two initial modulated sub-graphs identified,
+          sub-graph 1 with genes M,K,C and sub-graph 2 with genes
+          S,V,T, (c) Step 2: shows the modulated sub-graph 1 being
+          extended to M,K,C,A,D while no extension in sub-graph 2 (d)
+          Step 3: shows both the modulated sub-graphs merging together
+          with the addition of 3 genes Z,W,P.\label{fig:algorithm}}
+			\end{minipage}
+}
+
+\end{figure}
 
 \textbf{Initial Modulated sub-graphs}
 
 \texttt{MSF} constructs the first sub-graph starting with the genes
-associated with the lowest (most significant) \textit{p}-value from
-the network. It tries to extend the sub-graph to the most significant
-neighboring gene. A single combined \textit{p}-value is calculated for
+associated with the lowest (most significant) \textit{p}-value deduced from
+the DGEA. From this seed the sub-graph is attempted to be extended with its
+neighboring genes, starting with the most significant one. A single combined
+\textit{p}-value is calculated for
 the two genes. If the combined \textit{p}-value is smaller than the
 minimal individual gene's \textit{p}-value, the extended sub-graph is
-accepted. Then the next most significant neighboring gene is added to
-the sub-graph and the combined \textit{p}-value is calculated, if the
-new combined \textit{p}-value of three genes is smaller than the
-combined \textit{p}-value of the first two genes, the extended
-sub-graph is accepted. This step is iteratively repeated until no
+accepted. This step is iteratively repeated until no
 further extension is accepted. In this case the process starts over
 with all remaining genes not yet in a significantly modulated
 sub-graph. This step identifies all the trivial sub-graphs that are
-modulated in the whole network~(Fig.~1b).\newline
+modulated in the whole network (Fig.~\ref{fig:algorithm}b).\newline
 
 \textbf{Extending Modulated sub-graphs}
 
 In the next step initial modulated sub-graphs are used to check if
 they could further be extended beyond the immediate neighborhood.
-This is done by testing all possible extension by N genes (default two
-genes) for all genes in the sub-graph. Again, this step is iteratively
+This is done by testing all possible extension paths up to N genes
+for all genes in the sub-graph. Again, this step is iteratively
 repeated until no further genes are added to the significant
 differentially expressed sub-graphs. This steps bridges small gaps of
 genes without a clear differential signal in the
-DGEA~(Fig.~1c).\newline
+DGEA~(Fig.~\ref{fig:algorithm}c).\newline
 
 \textbf{Merging Modulated sub-graphs}
 
@@ -267,7 +307,7 @@ two sub-graphs merge with the connector of at most N genes (default
 two genes) and the combined \textit{p}-value of the merged sub-graph
 including the bridging genes in between is less than the individual
 \textit{p}-values of the two sub-graphs, the two sub-graphs are merged
-together to one big modulated sub-graph~(Fig.~1d). This step is
+together to one big modulated sub-graph~(Fig.~\ref{fig:algorithm}d). This step is
 repeated iteratively until no sub-graphs could be merged.\newline
 
 \textbf{Finding Sources \& Sinks}
@@ -280,8 +320,8 @@ the stimulus causes downstream effects. In the same spirit the most
 downstream genes of the modulated sub-graph are identified and defined
 as sinks. Sinks can be interpreted as the effectors where the
 integrated information within the signal transduction network is set
-to action. Genes in circular loops in the sub-graphs have no source or
-sink.
+to action. Due to circular loops not all sub-graphs must have sources or
+sinks.
 
 
 \section*{Results}
@@ -289,28 +329,26 @@ sink.
 \subsection*{Robustness}
 
 To assess the robustness and stability of our method, Poisson
-distributed noise was added to the sample read counts. Then DGEA was
+distributed noise was added to the sample read counts \TODO{more details;what samples;what DGEA}. Then DGEA was
 carried out on the disturbed data with the same parameters as for the
-native data, followed by analysis with \texttt{MSF}. Using this
-criteria, the goal was to spot almost identical modulated sub-graphs
-in the real and noisy data. This procedure was carried out 100 times
+native data, followed by analysis with \texttt{MSF}. This procedure was carried out 100 times
 and every time the genes from the sub-graphs identified from noisy
 data were compared to the genes of sub-graphs identified from the
 native data. This was also done for the DEG obtained for each run, a
 cutoff was used to compare the retrieved DEG from noisy data to the
 native data.  The robustness of \texttt{MSF} and the DEG analysis for
-the three time-points are shown in~(Fig.~2). We were very stringent in
+the three time-points are shown in~(Fig.~2) \TODO{which time points}. We were very stringent in
 adding noise to the counts, which could be seen by the DEG analysis
-robustness. For the last time-point (48hpi) 84\% genes of the
-sub-graphs from native data were retrieved, for 24hpi robustness was
-about 79\%. Robustness was 71\% at 6hpi, this could be due to that the
+robustness. For the last time-point (48h~p.i.) 84~\% genes of the
+sub-graphs from native data were retrieved, for 24~h~p.i. robustness was
+about 79~\%. Robustness was 71~\% at 6~h~p.i., this could be due to that the
 infection merely started and the signal transdcution was weak as
 compared to the later time-points.
 
 Simulation testing was also conducted on \texttt{MSF}, the objective
 was to find less sources than observed in the sub-graphs identified by
 \texttt{MSF} from native data. Simulation results showed a chance of
-less than 10 percent to get more sources than observed.
+less than 10 percent to get more sources than observed \TODO{we agreed on massively expanding this section or skip it alltogether}.
 
 \subsection*{Case Study}
 
@@ -333,23 +371,25 @@ that IFN-$\alpha / \beta$ should be tested against Ebola for its
 antiviral activity through clinical trials~\cite{Konde}. The aim of
 testing the EBOV infection data with \texttt{MSF} was to identify the
 modulated sub-graphs and check if \texttt{MSF} is able to identify the
-IFN-$\alpha / \beta$ gene as one of the sources.
+IFN-$\alpha / \beta$ gene as one of the sources. \TODO{why this data set?}
 
 EBOV infection count data was downloaded from GEO
 (GSE84188). Differential gene expression analysis was performed on the
 count data with edgeR package (version 3.4.2)~\cite{edgeR}. The DEG
-list generated by edgeR was used as an input for \texttt{MSF}. The
-EBOV infection data has three time-points 6, 24 and 48 hour post
-infection (hpi). At 6hpi, five modulated sub-graphs were
-identified. Most of the genes part of the sub-graphs were chemokines
+list generated by edgeR was used as an input for \texttt{MSF} \TODO{above you said MSF does not use a DEG gene list}. The
+EBOV infection experiments describe the course of infection at three time-points 6, 24 and 48 hour post
+infection (h~p.i.). For the earliest time point at 6 h~p.i., five modulated sub-graphs were
+identified \TODO{with how many genes each?}. Most of the genes part of the sub-graphs were chemokines
 (CXCL10, CCL8) and Interleukin genes (IL6, IL27, IL23) which serve as
 a subset of CD4+ T helper cells. IFNB1 and IFNA1 were both identified
 as two of the possible sources. Most of the sources identified by
-\texttt{MSF} were type~I interferon induced genes. At 24hpi nine
+\texttt{MSF} were type~I interferon induced genes. At 24h~p.i. nine
 modulated sub-graphs were identified, IFNA1 was identified as one of
 the sources. For the last time-point again IFNB1 and IFNA1 were
 identified as the two sources out of the possible sources from seven
 modulated sub-graphs identified.
+
+\TODO{bis da!!}
 
 As stated earlier IFN-$\alpha / \beta$ could be one of the target
 genes of Ebola infection. We were able to successfully identify IFNA1
@@ -362,9 +402,9 @@ reduce the search space for potential target genes and can help the
 biologist as the starting point of clinical testing for drugs and
 vaccines against an infection.
 
-\subsection*{Modulated sub-graphs at 6hpi}
+\subsection*{Modulated sub-graphs at 6h~p.i.}
 
- Three main modulated sub-graphs identified by \texttt{MSF} at 6hpi
+ Three main modulated sub-graphs identified by \texttt{MSF} at 6h~p.i.
  are shown in~(Fig.~3). The graph shows different colored nodes as
  genes associated to KEGG pathways and how they cross talk. The KEGG
  association and visualization on the modulated sub-graphs was done
@@ -399,12 +439,12 @@ Reactome. We compared the pathways enriched in \texttt{MSF} identified
 sub-graphs to pathway analysis by SPIA~\cite{Tarca} for KEGG and
 Reactome pathway enrichment analysis for Reactome.
 
-At 6hpi Cytokegg identified the sub-graph genes to be enriched in
+At 6h~p.i. Cytokegg identified the sub-graph genes to be enriched in
 Toll-like receptor signaling, TNF signaling, IL-17 signaling and
 NF-kappa signaling pathways, as also stated by~\cite{Olejnik}. The
 earliest response EBOV induces on cytokine is via TLR4-mediated
 signaling~\cite{Olejnik}, Gene enrichment analysis of sub-graph genes
-at 6hpi showed toll-like receptor signaling being most significantly
+at 6h~p.i. showed toll-like receptor signaling being most significantly
 dis-regulated pathway, this important signaling pathway was not
 identified by SPIA along with RIG-I-like receptor signaling pathway,
 TNF signaling pathway and IL-17 signaling (Table 1 in the supplement
@@ -492,45 +532,7 @@ Reactome pathway analysis.
 
 
 
-\begin{figure*}[ht!]
-		\centering
-	\fbox{
-		\begin{minipage}{17 cm}
 
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=10.0cm]{Tgfb1.png}
-		\caption{Input}
-	\end{subfigure}
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=10.0cm]{TGFBstep1.png}
-		\caption{Step 1}
-	\end{subfigure}
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=10.0cm]{TGFBstep2.png}
-		\caption{Step 2}
-	\end{subfigure}
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=10.0cm]{TGFBstep3.png}
-		\caption{Step 3}
-	\end{subfigure}
-	\caption{Overview of \texttt{MSF} process showing 3 step toy
-          example to identify the modulated sub-graphs. (a) Input:
-          showing a network of genes with green nodes as genes with
-          \textit{p}-values $< $ 0.05, and blue nodes are genes with
-          \textit{p}-values $>$ 0.05, (b) Step 1: genes circled red
-          show the two initial modulated sub-graphs identified,
-          sub-graph 1 with genes M,K,C and sub-graph 2 with genes
-          S,V,T, (c) Step 2: shows the modulated sub-graph 1 being
-          extended to M,K,C,A,D while no extension in sub-graph 2 (d)
-          Step 3: shows both the modulated sub-graphs merging together
-          with the addition of 3 genes Z,W,P.}
-			\end{minipage}
-}
-\end{figure*}
 
 \begin{figure*}[p]
 	\centering
@@ -553,7 +555,7 @@ Reactome pathway analysis.
 		\begin{minipage}{17 cm}
 	\includegraphics[width=1.05\linewidth]{SeperatedMergedNetwork.png}
 	\caption{Shows the three modulated sub-graphs identified by
-          MSF at 6hpi, where nodes are genes and edges are the
+          MSF at 6h~p.i., where nodes are genes and edges are the
           interactions. The node coloring is associated to KEGG
           pathways referring to the colors in the legend. The graph
           edges are from Reactome. Important genes to EBOV infection
