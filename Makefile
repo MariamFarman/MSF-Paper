@@ -1,7 +1,7 @@
 all: main
 
 clean:
-	rm -f MSF_Paper_FA.aux MSF_Paper_FA.pdf MSF_Paper_FA.log MSF_Paper_FA.blg MSF_Paper_FA.bbl MSF_Paper_FA.out
+	rm -f  MSF_Paper_FA.aux MSF_Paper_FA.pdf MSF_Paper_FA.log MSF_Paper_FA.blg MSF_Paper_FA.bbl MSF_Paper_FA.out
 
 main:
 	pdflatex MSF_Paper_FA
