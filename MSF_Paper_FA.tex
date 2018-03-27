@@ -378,29 +378,7 @@ reduce the search space for potential target genes and can help the
 biologist as the starting point of clinical testing for drugs and
 vaccines against an infection.
 
-\subsection*{Robustness}
 
-To assess the robustness and stability of our method, Poisson
-distributed noise was added to the read counts at the 3 time-points. Then DGEA was
-carried out on the disturbed data with the same parameters as for the
-native data using edgeR, followed by analysis with \texttt{MSF}. This procedure was carried out 100 times
-and every time the genes from the sub-graphs identified from noisy
-data were compared to the genes of sub-graphs identified from the
-native data. This was also done for the DEG obtained for each run, a
-cutoff was used to compare the retrieved DEG from noisy data to the
-native data.  The robustness of \texttt{MSF} and the DEG analysis for
-the time-point 6, 24, and 48 hpi are shown in Fig.~\ref{fig:DEGvsMSF}. We were very stringent in
-adding noise to the counts, which could be seen by the DEG analysis
-robustness. For the last time-point (48h~p.i.) 84~\% genes of the
-sub-graphs from native data were retrieved, for 24~h~p.i. robustness was
-about 79~\%. Robustness was 71~\% at 6~h~p.i., this could be due to that the
-infection merely started and the signal transdcution was weak as
-compared to the later time-points.
-
-Simulation testing was also conducted on \texttt{MSF}. For each time-point, one \texttt{MSF} identified sub-graph was taken. A random graph was generated with the same number of genes as the sub-graphs and the predicted sources were counted. The objective
-was to find less sources in the simulated sub-graphs than observed in the real sub-graphs identified by
-\texttt{MSF}. Simulation results showed a chance of $<$10$\%$
-of the 1000 random sub-graphs generated to get more sources than observed.
 
 \subsection*{Modulated sub-graphs at 6 hpi}
 
@@ -425,6 +403,30 @@ of the 1000 random sub-graphs generated to get more sources than observed.
  into natural killer mediated cytotoxicity. Sub-graph 3 shows how some
  of the cytokine and chemokine genes activate the natural killer
  mediated cytotoxicity and apoptosis.
+ 
+ \subsection*{Robustness}
+ 
+ To assess the robustness and stability of our method, Poisson
+ distributed noise was added to the read counts at the 3 time-points. Then DGEA was
+ carried out on the disturbed data with the same parameters as for the
+ native data using edgeR, followed by analysis with \texttt{MSF}. This procedure was carried out 100 times
+ and every time the genes from the sub-graphs identified from noisy
+ data were compared to the genes of sub-graphs identified from the
+ native data. This was also done for the DEG obtained for each run, a
+ cutoff was used to compare the retrieved DEG from noisy data to the
+ native data.  The robustness of \texttt{MSF} and the DEG analysis for
+ the time-point 6, 24, and 48 hpi are shown in Fig.~\ref{fig:DEGvsMSF}. We were very stringent in
+ adding noise to the counts, which could be seen by the DEG analysis
+ robustness. For the last time-point (48h~p.i.) 84~\% genes of the
+ sub-graphs from native data were retrieved, for 24~h~p.i. robustness was
+ about 79~\%. Robustness was 71~\% at 6~h~p.i., this could be due to that the
+ infection merely started and the signal transdcution was weak as
+ compared to the later time-points.
+ 
+ To test \texttt{MSF's} correctness simulation was also conducted. For each time-point, one \texttt{MSF} identified sub-graph was taken. A random graph was generated with the same number of genes as the sub-graphs using the same interaction file and the identified sources were counted. The objective
+ was to find less sources in the simulated sub-graphs than observed in the real sub-graphs identified by
+ \texttt{MSF}. Simulation results showed a chance of $<$10$\%$
+ of the 1000 random sub-graphs generated to get more sources than observed.
 
 
 
@@ -529,6 +531,22 @@ Reactome pathway analysis.
 
 \bigskip
 
+\begin{figure*}
+	\centering
+	\fbox{
+		\begin{minipage}{17 cm}
+			\includegraphics[width=1.05\linewidth]{SeperatedMergedNetwork.png}
+			\caption{Shows the three modulated sub-graphs identified by
+				MSF at 6 hpi, where nodes are genes and edges are the
+				interactions. The node coloring is associated to KEGG
+				pathways referring to the colors in the legend. The graph
+				edges are from Reactome. Important genes to EBOV infection
+				as from literature are enlarged in the graph. The signal
+				flow corresponding to each sub-graph is depicted as simple
+				flow chart against each sub-graph.\label{fig:Sub-graph6hpi}}
+		\end{minipage}
+	}
+\end{figure*}
 
 
 
@@ -548,22 +566,6 @@ Reactome pathway analysis.
 	}
 \end{figure*}
 
-\begin{figure*}
-	\centering
-	\fbox{
-		\begin{minipage}{17 cm}
-	\includegraphics[width=1.05\linewidth]{SeperatedMergedNetwork.png}
-	\caption{Shows the three modulated sub-graphs identified by
-          MSF at 6 hpi, where nodes are genes and edges are the
-          interactions. The node coloring is associated to KEGG
-          pathways referring to the colors in the legend. The graph
-          edges are from Reactome. Important genes to EBOV infection
-          as from literature are enlarged in the graph. The signal
-          flow corresponding to each sub-graph is depicted as simple
-          flow chart against each sub-graph.\label{fig:Sub-graph6hpi}}
-		\end{minipage}
-}
-\end{figure*}
 
 
 
