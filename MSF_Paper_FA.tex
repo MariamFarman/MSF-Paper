@@ -67,7 +67,7 @@ based on the DGEA results of all genes tested. Thereby, expression
 patterns of genes are integrated according to the topology of their
 interactions and allow potentially to read the flow of information
 from the perturbation source to the effectors. The described software,
-names \texttt{Modulated Sub-graph Finder} is freely available at
+named \texttt{Modulated Sub-graph Finder} is freely available at
 \url{https://github.com/MariamFarman/Modulated-SubGraph-Finder}.
 
 \end{abstract}
@@ -226,51 +226,12 @@ sub-graphs consisting of genes which are not significant on there own.
 \subsection*{Overview of our method}
 
 To reduce the complexity to score all possible connected sub-graphs
-\texttt{MSF} applies a three steps heuristic as described in the
+\texttt{MSF} applies a four steps heuristic as described in the
 following. The proceeding identification of modulated sub-graphs from
-a network by \texttt{MSF} is presented graphical and as pseudocode in
-Fig.~\ref{fig:algorithm}. \TODO{add pseudocode or better replace figure with pseudocode}
+a network by \texttt{MSF} is presented as pseudocode in flowchart in
+Fig.~\ref{fig:pseudocodemsf}. 
 
-\begin{figure}[ht!]
-		\centering
-	\fbox{
-		\begin{minipage}{8 cm}
 
-	\begin{subfigure}{.6\textwidth}
-		\centering
-		\includegraphics[width=6.5cm]{Tgfb1.png}
-		\caption{Input}
-	\end{subfigure}
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=6.5cm]{TGFBstep1.png}
-		\caption{Step 1}
-	\end{subfigure}
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=6.5cm]{TGFBstep2.png}
-		\caption{Step 2}
-	\end{subfigure}
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=6.5cm]{TGFBstep3.png}
-		\caption{Step 3}
-	\end{subfigure}
-	\caption{Overview of \texttt{MSF} process steps exemplified on a simplified toy
-          example. (a) Input:
-          showing a network of genes with green nodes as genes with
-          \textit{p}-values $< $ 0.05, and blue nodes are genes with
-          \textit{p}-values $>$ 0.05, (b) Step 1: genes circled red
-          show the two initial modulated sub-graphs identified,
-          sub-graph 1 with genes M,K,C and sub-graph 2 with genes
-          S,V,T, (c) Step 2: shows the modulated sub-graph 1 being
-          extended to M,K,C,A,D while no extension in sub-graph 2 (d)
-          Step 3: shows both the modulated sub-graphs merging together
-          with the addition of 3 genes Z,W,P.\label{fig:algorithm}}
-			\end{minipage}
-}
-
-\end{figure}
 
 \textbf{Initial Modulated sub-graphs}
 
@@ -344,7 +305,7 @@ Ebola viral protein VP35 targets the host type~I interferon
 IFN-$\alpha / \beta$ to block the early antiviral immune response
 ~\cite{Prins,Konde,Falasca,Cardenas,Olejnik}. It has been proposed
 that IFN-$\alpha / \beta$ should be tested against Ebola for its
-antiviral activity through clinical trials~\cite{Konde}. This data was chosen for analysis because it was the most recent EBOV infection data and the infection was carried out in human macrophages, which would help see the innate immune response of host. The aim of
+antiviral activity through clinical trials~\cite{Konde}. This data was chosen for analysis because it was the most recent EBOV infection data and the infection was carried out in human macrophages, which would help us comprehend the innate immune response of host. The aim of
 testing this data with \texttt{MSF} was to identify the
 modulated sub-graphs and check if \texttt{MSF} is able to identify the
 IFN-$\alpha / \beta$ gene as one of the sources.
@@ -360,10 +321,9 @@ identified with 41, 107, and 18 genes. Two of the five sub-graphs were less than
 a subset of CD4+ T helper cells. IFNB1 and IFNA1 were both identified
 as two of the possible sources. Most of the sources identified by
 \texttt{MSF} were type~I interferon induced genes. At 24 hpi nine
-modulated sub-graphs were identified, IFNA1 was identified as one of
-the sources. For the last time-point again IFNB1 and IFNA1 were
-identified as the two sources out of the possible sources from seven
-modulated sub-graphs identified.
+modulated sub-graphs were identified with four main sub-graphs consisting of 38, 85, 148 and 167 genes. IFNA1 was identified as one of
+the sources in the most significantly modulated sub-graph. For the last time-point 48 hpi, eleven modulated sub-graphs were identified. Eight of the sub-graphs were less than seven genes and main sub-graphs had 39, 71 and 210 genes. IFNB1 and IFNA1 were
+identified as the two sources out of the possible sources.
 
 \TODO{bis da!!}
 
@@ -373,7 +333,7 @@ as a source in all three time-points and INFB1 in two of the
 time-points. Although IFNA1 and IFNB1 were two of the most significant
 gene in the later time points, \texttt{MSF} was able to detect them as
 a source in the early time-point when the genes were not significant
-based on the individual DGEA alone. Identifying these sources will
+based on the individual DGEA alone. Identifying the possible sources will
 reduce the search space for potential target genes and can help the
 biologist as the starting point of clinical testing for drugs and
 vaccines against an infection.
@@ -383,10 +343,10 @@ vaccines against an infection.
 \subsection*{Modulated sub-graphs at 6 hpi}
 
  Three main modulated sub-graphs identified by \texttt{MSF} at 6 hpi
- are shown in Fig.~\ref{fig:Sub-graph6hpi}. The graph shows different colored nodes as
+ are shown in Fig.~\ref{fig:Sub-graph6hpi}. the figure shows two forms of graphs, one graph has different colored nodes as
  genes associated to different KEGG pathways and how they cross talk. The KEGG
  association and visualization on the modulated sub-graphs was done
- using StringApp~\cite{StringApp} in Cytoscape~\cite{Cyto}. The graph
+ using StringApp~\cite{StringApp} in Cytoscape~\cite{Cyto}. StringApp can retrieve functional enrichment for Gene Ontology terms, KEGG Pathways, and protein domains for a user-specified network. The other graph like a flow chart,
  unveils how more than one stimulus coincides to prevent the
  progression of infection. Sub-graph 1 shows toll-like receptor,
  cytokine, chemokine and jak-stat genes leading to TNF and eventually
@@ -423,7 +383,7 @@ vaccines against an infection.
  infection merely started and the signal transdcution was weak as
  compared to the later time-points.
  
- To test \texttt{MSF's} correctness simulation was also conducted. For each time-point, one \texttt{MSF} identified sub-graph was taken. A random graph was generated with the same number of genes as the sub-graphs using the same interaction file and the identified sources were counted. The objective
+ To test \texttt{MSF's} correctness simulation was also conducted. For each time-point, one \texttt{MSF} identified sub-graph was selected and  using simulation random graph was generated with the same number of genes as the sub-graphs utilizing the same interaction file. The simulation identified sources were counted. The objective
  was to find less sources in the simulated sub-graphs than observed in the real sub-graphs identified by
  \texttt{MSF}. Simulation results showed a chance of $<$10$\%$
  of the 1000 random sub-graphs generated to get more sources than observed.
@@ -465,7 +425,7 @@ RIG-I/MDA5 mediated induction of IFN-alpha/beta pathways, NF-kB
 activation, Reactome as well could not identify Toll-like receptor
 signaling. This shows that
 \texttt{MSF} is able to identify the important modulated genes in the
-sub-graphs at the earliest time-point of infection. A summary of the comparison between the different tools is given in the supplement Table 1.
+sub-graphs at the earliest time-point of infection.
 
 
 \section*{Discussion}
@@ -530,6 +490,18 @@ Reactome pathway analysis.
 \bibliography{MSF_Paper_FA}}
 
 \bigskip
+
+\begin{figure*}
+	\centering
+	\fbox{
+		\begin{minipage}{17 cm}
+		\includegraphics[width=1.0\linewidth]{PseudoCodeMSF}
+		\caption{Shows the algorithm of MSF with four steps to find the modulated sub-graphs and identify sources and sinks.}
+		\label{fig:pseudocodemsf}
+	\end{minipage}
+}
+	
+\end{figure*}
 
 \begin{figure*}
 	\centering
