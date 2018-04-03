@@ -228,7 +228,7 @@ sub-graphs consisting of genes which are not significant on there own.
 To reduce the complexity to score all possible connected sub-graphs
 \texttt{MSF} applies a four steps heuristic as described in the
 following. The proceeding identification of modulated sub-graphs from
-a network by \texttt{MSF} is presented as pseudocode in flowchart in
+a network by \texttt{MSF} is presented as a graphical pseudo code  in
 Fig.~\ref{fig:pseudocodemsf}. 
 
 
@@ -246,18 +246,17 @@ accepted. This step is iteratively repeated until no
 further extension is accepted. In this case the process starts over
 with all remaining genes not yet in a significantly modulated
 sub-graph. This step identifies all the trivial sub-graphs that are
-modulated in the whole network (Fig.~\ref{fig:algorithm}b).\newline
+modulated in the whole network.\newline
 
 \textbf{Extending Modulated sub-graphs}
 
 In the next step initial modulated sub-graphs are used to check if
-they could further be extended beyond the immediate neighborhood.
-This is done by testing all possible extension paths up to N genes
+they could further be extended beyond the immediate neighborhood. This is done by testing all possible extension paths up to N genes
 for all genes in the sub-graph. Again, this step is iteratively
 repeated until no further genes are added to the significant
 differentially expressed sub-graphs. This steps bridges small gaps of
 genes without a clear differential signal in the
-DGEA~(Fig.~\ref{fig:algorithm}c).\newline
+DGEA.\newline
 
 \textbf{Merging Modulated sub-graphs}
 
@@ -268,7 +267,7 @@ two sub-graphs merge with the connector of at most N genes (default
 two genes) and the combined \textit{p}-value of the merged sub-graph
 including the bridging genes in between is less than the individual
 \textit{p}-values of the two sub-graphs, the two sub-graphs are merged
-together to one big modulated sub-graph~(Fig.~\ref{fig:algorithm}d). This step is
+together to one big modulated sub-graph. This step is
 repeated iteratively until no sub-graphs could be merged.\newline
 
 \textbf{Finding Sources \& Sinks}
@@ -300,12 +299,9 @@ drugs for the treatment of Ebola virus infection~\cite{Konde,Rhein}.
 The initial targets of EBOV are the macrophages and dendritic immune
 cells~\cite{Falasca,Rhein}. EBOV inhibits the critical innate immune
 response of the host, which includes the activation of alpha/beta
-interferon (IFN-$\alpha / \beta$)~\cite{Prins,Konde,Cardenas}. The
-Ebola viral protein VP35 targets the host type~I interferon
-IFN-$\alpha / \beta$ to block the early antiviral immune response
-~\cite{Prins,Konde,Falasca,Cardenas,Olejnik}. It has been proposed
+interferon (IFN-$\alpha / \beta$)~\cite{Prins,Konde,Cardenas}. It has been proposed
 that IFN-$\alpha / \beta$ should be tested against Ebola for its
-antiviral activity through clinical trials~\cite{Konde}. This data was chosen for analysis because it was the most recent EBOV infection data and the infection was carried out in human macrophages, which would help us comprehend the innate immune response of host. The aim of
+antiviral activity through clinical trials~\cite{Konde}. Since the data was most recent and the  infection was carried out in human macrophages, it helped us comprehend the innate immune response of host. The aim of
 testing this data with \texttt{MSF} was to identify the
 modulated sub-graphs and check if \texttt{MSF} is able to identify the
 IFN-$\alpha / \beta$ gene as one of the sources.
@@ -343,23 +339,23 @@ vaccines against an infection.
 \subsection*{Modulated sub-graphs at 6 hpi}
 
  Three main modulated sub-graphs identified by \texttt{MSF} at 6 hpi
- are shown in Fig.~\ref{fig:Sub-graph6hpi}. the figure shows two forms of graphs, one graph has different colored nodes as
- genes associated to different KEGG pathways and how they cross talk. The KEGG
+ are shown in Fig.~\ref{fig:Sub-graph6hpi}. It shows two forms of graphs, one graph has different colored nodes as
+ genes associated to different KEGG pathways. The KEGG
  association and visualization on the modulated sub-graphs was done
- using StringApp~\cite{StringApp} in Cytoscape~\cite{Cyto}. StringApp can retrieve functional enrichment for Gene Ontology terms, KEGG Pathways, and protein domains for a user-specified network. The other graph like a flow chart,
+ using StringApp~\cite{StringApp} in Cytoscape~\cite{Cyto}. StringApp can retrieve functional enrichment for Gene Ontology terms, KEGG Pathways, and protein domains for a user-specified network. The other graph is a flow chart, that
  unveils how more than one stimulus coincides to prevent the
  progression of infection. Sub-graph 1 shows toll-like receptor,
  cytokine, chemokine and jak-stat genes leading to TNF and eventually
- going into apoptosis. Sub-graph 2 shows Extra-cellular matrix (ECM)
- receptor interaction genes which are suggested to be in interaction
+ going into apoptosis. From one end  of sub-graph 2, Extra-cellular matrix (ECM)
+ receptor interaction genes are modulated, which are suggested to be in interaction
  with Ebola glycoprotein (GP)~\cite{Veljkovic}. ECM receptor, Focal
- adhesion and P13k-Akt signaling genes are the sources from one end of
- the sub-graph. P13k-Akt signaling goes to FoxO signaling which
- eventually leads to cell cycle, which at later time-points is
- disrupted. From the other end of sub-graph 2 toll-like recpetor
+ adhesion and P13k-Akt signaling genes are the sources from this end of
+ the sub-graph, with P13k-Akt signaling going to FoxO signaling which
+ eventually leads to cell cycle, that at later time-points is
+ seen to be disrupted. From the other end of sub-graph 2 toll-like recpetor
  combined with cytosolic DNA sensing and cytokine-chemokine signaling
  activates Jak-stat which leads to the start of apoptosis with a
- activation of a few apoptosis genes. Cytokine is also seen to sink
+ few apoptosis genes being modulated. Cytokine is also seen to sink
  into natural killer mediated cytotoxicity. Sub-graph 3 shows how some
  of the cytokine and chemokine genes activate the natural killer
  mediated cytotoxicity and apoptosis.
@@ -367,7 +363,7 @@ vaccines against an infection.
  \subsection*{Robustness}
  
  To assess the robustness and stability of our method, Poisson
- distributed noise was added to the read counts at the 3 time-points. Then DGEA was
+ distributed noise was added to the read counts of the three time-points. Then DGEA was
  carried out on the disturbed data with the same parameters as for the
  native data using edgeR, followed by analysis with \texttt{MSF}. This procedure was carried out 100 times
  and every time the genes from the sub-graphs identified from noisy
@@ -378,12 +374,12 @@ vaccines against an infection.
  the time-point 6, 24, and 48 hpi are shown in Fig.~\ref{fig:DEGvsMSF}. We were very stringent in
  adding noise to the counts, which could be seen by the DEG analysis
  robustness. For the last time-point (48h~p.i.) 84~\% genes of the
- sub-graphs from native data were retrieved, for 24~h~p.i. robustness was
- about 79~\%. Robustness was 71~\% at 6~h~p.i., this could be due to that the
+ sub-graphs from native data were retrieved, for 24~h~p.i. recall rate was
+ 79~\%. Robustness was 71~\% at 6~h~p.i., this could be due to that the
  infection merely started and the signal transdcution was weak as
  compared to the later time-points.
  
- To test \texttt{MSF's} correctness simulation was also conducted. For each time-point, one \texttt{MSF} identified sub-graph was selected and  using simulation random graph was generated with the same number of genes as the sub-graphs utilizing the same interaction file. The simulation identified sources were counted. The objective
+ To test \texttt{MSF's} correctness simulation was also conducted. For each time-point, one \texttt{MSF} identified sub-graph was selected and using simulation random graph was generated with the same number of genes as the sub-graphs utilizing the same interaction file. The simulation identified sources were counted from the simulated sub-graph. The objective
  was to find less sources in the simulated sub-graphs than observed in the real sub-graphs identified by
  \texttt{MSF}. Simulation results showed a chance of $<$10$\%$
  of the 1000 random sub-graphs generated to get more sources than observed.
@@ -392,14 +388,13 @@ vaccines against an infection.
 
 \subsection*{Comparison}
 
-To further understand the functional role of the sub-graphs identified
-by \texttt{MSF}, we linked the sub-graphs to the predefined KEGG
-pathways and Reactome pathways through gene enrichment analysis. We
+ A comparison to other tools was performed on the same dataset using each software's default parameters. We compared the gene enrichment analysis in \texttt{MSF} identified
+sub-graphs to pathway analysis by SPIA~\cite{Tarca} for KEGG and
+Reactome pathway enrichment analysis for Reactome.  We
 used Cytoscape~\cite{Cyto} plugins to identify the enriched patwhays,
 CytoKegg~\cite{Cytokegg} for KEGG and Reactome FI~\cite{Reactome} for
-Reactome. A comparison to other tools was performed on the same dataset using each software's default parameters. We compared the pathways enriched in \texttt{MSF} identified
-sub-graphs to pathway analysis by SPIA~\cite{Tarca} for KEGG and
-Reactome pathway enrichment analysis for Reactome.
+Reactome for \texttt{MSF} identified
+sub-graphs.
 
 At 6 hpi Cytokegg identified the sub-graph genes to be enriched in
 Toll-like receptor signaling, TNF signaling, IL-17 signaling and
@@ -424,14 +419,13 @@ Signaling in Immune system, Chemokine receptors bind chemokines,
 RIG-I/MDA5 mediated induction of IFN-alpha/beta pathways, NF-kB
 activation, Reactome as well could not identify Toll-like receptor
 signaling. This shows that
-\texttt{MSF} is able to identify the important modulated genes in the
-sub-graphs at the earliest time-point of infection.
+\texttt{MSF} is able to identify the important modulated genes of the early infection stage.
 
 
 \section*{Discussion}
 
-The discussion should include the implications of the article results
-in view of prior work in this field.
+MSF is able to identify the connected modulated genes, showing how the signal transmission flows between the different predefined pathways. MSF is able to identify the important genes at the early stage of infection which at the later stage of infection became the most modulated genes. Even with the addition of noise MSF identifies the important modulated core set of genes. The sources identified by MSF can assist in the discovery of new drug targets. One limitation for MSF would be an incomplete interaction network. For the unknown or less known genes, the interactions are still not well known and so are usually missing in the biological network in different databases.
+
 
 \section*{Conclusions}
 
@@ -491,11 +485,13 @@ Reactome pathway analysis.
 
 \bigskip
 
+
+
 \begin{figure*}
 	\centering
 	\fbox{
 		\begin{minipage}{17 cm}
-		\includegraphics[width=1.0\linewidth]{PseudoCodeMSF}
+		\includegraphics[width=1.0\linewidth]{AlgorithmMSF.png}
 		\caption{Shows the algorithm of MSF with four steps to find the modulated sub-graphs and identify sources and sinks.}
 		\label{fig:pseudocodemsf}
 	\end{minipage}
