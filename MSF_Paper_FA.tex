@@ -309,9 +309,7 @@ response of the host, which includes the activation of alpha/beta
 interferon (IFN-$\alpha / \beta$)~\cite{Prins,Konde,Cardenas}. It has been
 proposed that IFN-$\alpha / \beta$ should be tested against Ebola for its
 antiviral activity through clinical trials~\cite{Konde}. Ebola infection
-data was selected to test the approach because it has been well recognized
-in the literature for the last several decades \TODO{what has been
-  recognized??}.  Thereby facilitating the verification of the results of
+data was selected to test the approach because it has been well recognized for the last several decades, and vast literature is available for the pathogenesis of Ebola. Thereby facilitating the verification of the results of
 \texttt{MSF} with the vast literature present on Ebola
 infection. Especially, the detection of IFN-$\alpha / \beta$ as point of
 action for the virus, could be considered as an basic indicator of the
@@ -329,17 +327,15 @@ time-points 6, 24 and 48 hour post infection (hpi). For the earliest time
 point at 6~hpi, five modulated sub-graphs were identified with 41, 107, and
 18 genes. Two of the five sub-graphs were less than 4 genes long. Most of
 the genes part of the sub-graphs were cytokines, chemokines (CXCL10, CCL8)
-and Interleukin genes (IL6, IL27, IL23) which serve as a subset \TODO{??}
-of CD4+ T helper cells. IFNB1 and IFNA1 were both identified as two of the
+and Interleukin genes (IL6, IL27, IL23). IFNB1 and IFNA1 were both identified as two of the
 possible sources. Most of the sources identified by \texttt{MSF} were
 type~I interferon induced genes. At 24~hpi nine modulated sub-graphs were
-identified with four main \TODO{(more than X genes)} sub-graphs consisting
-of 38, 85, 148 and 167 genes. IFNA1 was identified as one of the sources in
+identified with four main sub-graphs consisting
+of 38, 85, 148 and 167 genes, others being smaller than 10 genes. IFNA1 was identified as one of the sources in
 the most significantly modulated sub-graph. For the last time-point 48~hpi,
 eleven modulated sub-graphs were identified. Eight of the sub-graphs were
 less than seven genes and main sub-graphs had 39, 71 and 210 genes. IFNB1
-and IFNA1 were identified as the two sources out of the possible sources
-\TODO{??}.
+and IFNA1 were identified as the two sources out of the total sources.
 
 As stated earlier IFN-$\alpha / \beta$ was reported to be one of the target
 genes of Ebola infection. We were able to successfully identify IFNA1 as a
@@ -398,13 +394,12 @@ altogether.
  analysis with \texttt{MSF}. This procedure was carried out 100 times.
  Every time the genes from the modulated sub-graphs identified from noisy
  data were compared to the genes of sub-graphs identified from the native
- data. This was also done for the DEG obtained for each run, a cutoff of
- FDR less than 0.05 was used to compare the retrieved DEG from noisy data
- to the native data.  The robustness of \texttt{MSF} and the DEG analysis
+ data. This was also done for the DEG obtained for each run, using three different cutoffs of
+ FDR 0.01, 0.05 and 0.1. The robustness of \texttt{MSF} and the DEG analysis
  for the time-point 6, 24, and 48~hpi are shown in
  Fig.~\ref{fig:DEGvsMSF}. The procedure how data noise was modeled can be
  considered as rather stringent, which is already reflected by the limited
- recall rate in the edgeR based DGEA, between 84~\% (6~hpi) and 93~\%
+ recall rate in the edgeR based DGEA, between 68~\% (6~hpi) and 93~\%
  (24~hpi). For \texttt{MSF}-analysis the observed median recall rates lay
  between 71~\% (6~hpi) and 84~\% (48~hpi). The better performance of the
  pure DGEA can be explained by the fact that disturbed p-values do not
@@ -415,28 +410,22 @@ altogether.
 
 \subsection*{Comparison to Reactome pathway analysis tool}
 
-Gene enrichment analysis was performed on genes in \texttt{MSF} identified
-sub-graphs for each time-point using Reactome Analyze data
+Gene enrichment analysis was performed using Reactome Analyze data
 tool~\cite{Reactome}. Reactome's over-representation analysis tests whether
-certain Reactome pathways are enriched by the list of genes submitted. For
-comparison the DEG results from edgeR were filtered using a cut off of
-adjusted p-value < 0.1. This subset of DEG list was used for gene
-enrichment analysis. Enriched pathways were further filtered by confidence
-score p-values, pathways having p-value less $<$ 0.05 for cut off DEG list
-and $>$ 1$^{-10}$ for pathway enrichment in \texttt{MSF} identified
-sub-graph genes. Out of 282 pathways dis-regulated in the two comparison
-analysis with three time-points each, pathways that were present in at
-least three time-points are shown in Fig~\ref{fig:msfvsreactome} \TODO{rephrase; not really clear how this filtering of pathways shown was done}.
+certain Reactome pathways are enriched by the list of genes submitted.Genes from \texttt{MSF} identified
+sub-graphs for each time-point were analyzed for gene enrichment analysis.  For
+comparison the DEG results from edgeR were filtered using three different cut off of
+adjusted p-value 0.01, 0.05 and 0.1. This three subsets of DEG list were used for gene
+enrichment analysis. The compression of \texttt{MSF}  and the three subset DEG list is shown in Fig~\ref{fig:msfvsreactome}
 
 The comparison shows most of the pathways known from literature
 to be dis-regulated by Ebola infection are enriched in both the enrichment
 analysis. Toll-Like receptor signaling pathway when interacts with EBOV
-glycoprotein (GP), triggers the activation of
-cytokines~\cite{Olejnik}. This pathway was not identified when a p-value
-cut off DEG list was analyzed for enrichment. Due to \texttt{MSF}
-considering the complete DEG results, even the weak signal at the earliest
-time-point was detected; for example Toll-like receptor signaling. \TODO{what is the point you want to say and state it clearly. this is to vague}
-
+glycoprotein (GP), it triggers the activation of
+cytokines~\cite{Olejnik}. Toll-like receptor pathway is expected to be dis-regulated in the early stage of infection,  this pathway was not identified as significantly dis-regulated when p-value
+cut off DEG lists were analyzed for enrichment. Ten toll-like receptor cascades were identified as dis-regulated from gene enrichmant analysis of \texttt{MSF} identified genes, not a single one of these pathway was shown to be dis-regulated in DEG cut off lists. Since \texttt{MSF}
+considers the complete DEG results, even the weak signal at the earliest
+time-point was detected; for example Toll-like receptor signaling.
 
 \section*{Discussion}
 
@@ -476,7 +465,7 @@ has to be provided in the format of a directed adjacency list.
 
 \subsection*{Source of data}
 
-The Ebola infection RNA-seq dataset analyzed during the current study are
+Tlhe Ebola infection RNA-seq dataset analyzed during the current study are
 available in the GEO repository (GSE84188)~\cite{Olejnik}. The cell
 signaling network file used is from Reactome Functional interactions (FIs)
 Version 2016~\cite{Cytokegg}
@@ -554,9 +543,9 @@ SFB F43.
 \begin{figure*}[p]
 	\centering
 	\fbox{
-		\begin{minipage}{17 cm}
-			\includegraphics[width=16cm]{DEGvsMSF2.png}
-			\caption{\TODO{make plot smaller and consider to add DEG vor 0.1, 0.05 and 0.01 as you did before} The percentage of DEG analysis genes
+		\begin{minipage}{12 cm}
+			\includegraphics[width=12cm]{DEGvsMSF.png}
+			\caption{Shows the percentage of DEG analysis (3 different cut-offs) genes
                           and MSF identified sub-graph genes recall
                           rates for the three different time points of
                           EBOV infection data for 100 simulation where
@@ -572,8 +561,8 @@ SFB F43.
 	\centering
 	\fbox{
 		\begin{minipage}{10 cm}
-	\includegraphics[width=1.0\linewidth]{MSFvsReactome}
-	\caption{The heatmap shows Reactome pathway enrichment for genes in \texttt{MSF} identifed sub-graphs for the three time-points and the Reactome pathway enrichment for subset of DEG with adjusted p-value cut off of < 0.1. Green color shows the pathway being enriched and red color shows pathway not found as enriched. \TODO{this is not really a heatmap (no quantitative value encoded in the color but only qualitative value); you might want to include different p-value cutof for the DGE; in your set up you have to comapre column 1 with column 4; column 2 with column 5, and so on; that is suboptimal; the time points are not chronological ordered.}}
+	\includegraphics[width=1.0\linewidth]{MSFvsReactomeUpsetPlot}
+	\caption{The Upset plot shows the number of common pathways between different time-point and cut offs. }
 	\label{fig:msfvsreactome}
 \end{minipage}
 }
