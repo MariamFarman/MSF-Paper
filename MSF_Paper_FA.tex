@@ -100,20 +100,20 @@ interactions forming a functional unit. DEGs help to identify pathways or
 networks that may be altered during a change of condition providing
 important information about diseases and its treatment
 process~\cite{Khatri2012}. Pathway-based methods use predefined pathways or
-networks such as KEGG~\cite{Kegg} and Reactome~\cite{Reactome}, the
+networks such as KEGG~\cite{Kegg} and Reactome~\cite{Reactome2}, the
 expression measurements of the genes obtained from DGEA in combination with
 statistical methods and algorithms to identify specifically modulated
 pathways and processes~\cite{Campos}.
 
 Well established resources for pathway annotation are KEGG (Kyoto
 Encyclopedia of Genes and Genomes)\cite{Kegg} and
-Reactome~\cite{Reactome}. KEGG pathways is a branch of KEGG database that
+Reactome~\cite{Reactome2}. KEGG pathways is a branch of KEGG database that
 hosts a collection of manually drawn pathway maps representing the
 molecular interaction, reaction and relation networks of cellular
 functions. Similarly, Reactome is an open-source, manually curated,
 peer-reviewed database for signaling and metabolic molecules with their
 interactions formed into different biological pathways for nineteen
-species~\cite{Reactome}. Both provide predefined pathways which are sets of
+species~\cite{Reactome2}. Both provide predefined pathways which are sets of
 genes and their interactions categorized into functional units. Starting
 from a gene interaction network, genes are labeled according their role in
 a specific biological process. In this sense a particular gene can be
@@ -129,7 +129,7 @@ suffers from observational bias~\cite{schnoes2013biases}.
 Existing pathway-based analysis approaches use different research designs,
 which can be categorized into ORA (Over-representation analysis), FCS
 (Functional class scoring) and pathway topology based methods. All of which
-aim in finding in a subset of genes, e.g., significantly differentially
+aim in finding in a subset of genes, i.e., significantly differentially
 expressed genes, genes associated with a certain pathway more often than
 expected given the total set of examined genes, e.g.~the whole genome
 background.  ORA is the first and the most basic method of pathway
@@ -138,9 +138,9 @@ change and \textit{p}-value (most commonly using absolute log-fold change
 $\geq$ 2 and \textit{p}-value $\leq$ 0.05). Subsequently, sets of genes
 associated with annotated pathways are tested for being over-represented in
 the set of DEGs. To this end, hyper-geometric distribution, chi-square
-tests, binomial probability or the Fisher’s exact test are used. Thereby
+tests, binomial probability or the Fisher’s exact test are used~\cite{Bayer}. Thereby
 the information of the topology of genes in the pathways is
-neglected~\cite{Bayer}. Furthermore, ORA assumes that the biological
+neglected. Furthermore, ORA assumes that the biological
 pathways are independent of each other and ignores the fact that they
 cross-talk and overlap~\cite{Khatri2012,Campos}.
 
@@ -151,7 +151,8 @@ individual genes, ANOVA, t-test and Z-score. In the second step the
 statistics of individual genes in a pathway are transformed to an
 individual pathway-level statistic commonly using Kolmogorov-Smirnov
 statistic, mean or median. Finally the statistical significance of the
-pathway-level statistics is assessed. Although FCS covers some of the
+pathway-level statistics is assessed. A popular implementation of FCS is \texttt{GSEA}~\cite{subramanian2005gene}.
+Although FCS covers some of the
 limitations from ORA, it still lacks the topology of genes in a pathway,
 cross-talk and overlap of the pathways~\cite{Khatri2012,Campos}. Pathway
 topology based methods are similar to FCS except that they consider the
@@ -184,11 +185,11 @@ As input, information on functional links between genes provided by
 e.g.~KEGG or Reactome and information on the differential expression status
 of single genes resulting from a DGEA, are required. As a result the
 analysis returns sub-graphs and their joint confidence scores, reflecting
-how the perturbation is migrated through the network. Furthermore, the
+how the perturbation is migrating through the network. Furthermore, the
 entry points of perturbation in the networks and overlap with conventional
 pathway categories are returned. The output is prepared in a directed
 adjacency file, convenient for visualization, e.g., with
-StringApp~\cite{StringApp}, available as a Cytoscape plug-in~\cite{Cyto}.
+StringApp~\cite{StringApp}, which is available as a Cytoscape plug-in~\cite{Cyto}.
 
 All of this can be helpful to understand the cause and effect of a stimulus
 and might inform about potential points of intervention. The proposed
@@ -285,7 +286,7 @@ of the modulated sub-graphs. These trigger genes are the sources of the
 sub-graphs with only outgoing edges. These genes can be interpreted as the
 possible entry points of perturbation from where the stimulus causes
 downstream effects. In the same spirit the most downstream genes of the
-modulated sub-graph are identified and defined as sinks. Sinks can be
+modulated sub-graph are identified and referred to as sinks. Sinks can be
 interpreted as the effectors where the integrated information within the
 signal transduction network is set to action. Due to circular loops not all
 sub-graphs are guaranteed to have sources or sinks.
@@ -309,7 +310,7 @@ response of the host, which includes the activation of alpha/beta
 interferon (IFN-$\alpha / \beta$)~\cite{Prins,Konde,Cardenas}. It has been
 proposed that IFN-$\alpha / \beta$ should be tested against Ebola for its
 antiviral activity through clinical trials~\cite{Konde}. Ebola infection
-data was selected to test the approach because it has been well recognized for the last several decades, and vast literature is available for the pathogenesis of Ebola. Thereby facilitating the verification of the results of
+data was selected to test our novel method because it has been well recognized for the last several decades, and vast literature is available for the pathogenesis of Ebola. Thereby facilitating the verification of the results of
 \texttt{MSF} with the vast literature present on Ebola
 infection. Especially, the detection of IFN-$\alpha / \beta$ as point of
 action for the virus, could be considered as an basic indicator of the
@@ -349,7 +350,7 @@ genes and can help the biologist as the starting point of clinical testing
 for drugs and vaccines against an infection.
 
 Table~\ref{tab:rawVsHartung} compares the results of \texttt{MSF}, namely
-the number of detected sub-modules and their total genes numbers, to a
+the number of detected sub-modules and their total gene numbers, to a
 simple analysis of mapping significantly modulated genes from the DGEA to
 the network and joining neighbors to modules. The numbers indicate that
 \texttt{MSF} detects less but larger sub-modules, applying its statistical
@@ -403,7 +404,7 @@ altogether.
  (24~hpi). For \texttt{MSF}-analysis the observed median recall rates lay
  between 71~\% (6~hpi) and 84~\% (48~hpi). The better performance of the
  pure DGEA can be explained by the fact that disturbed p-values do not
- change the results for DGEA as long as the p-value does not wise above the
+ change the results for DGEA as long as the p-value does not rise above the
  chosen cutoff value. In contrast, \texttt{MSF} is sensitive to p-value
  changes across the whole range of possible values.
 
@@ -411,8 +412,8 @@ altogether.
 \subsection*{Comparison to Reactome pathway analysis tool}
 
 Gene enrichment analysis was performed using Reactome Analyze data
-tool~\cite{Reactome}. Reactome's over-representation analysis tests whether
-certain Reactome pathways are enriched by the list of genes submitted.Genes from \texttt{MSF} identified
+tool~\cite{Reactome2}. Reactome's over-representation analysis tests whether
+certain Reactome pathways are enriched by the list of genes submitted. Genes from \texttt{MSF} identified
 sub-graphs for each time-point were analyzed for gene enrichment analysis.  For
 comparison the DEG results from edgeR were filtered using three different cut off of
 adjusted p-value 0.01, 0.05 and 0.1. This three subsets of DEG list were used for gene
@@ -560,7 +561,7 @@ SFB F43.
 \begin{figure*}[p]
 	\centering
 	\fbox{
-		\begin{minipage}{10 cm}
+		\begin{minipage}{15 cm}
 	\includegraphics[width=1.0\linewidth]{MSFvsReactomeUpsetPlot}
 	\caption{The Upset plot shows the number of common pathways between different time-point and cut offs. }
 	\label{fig:msfvsreactome}
