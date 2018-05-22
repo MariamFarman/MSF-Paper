@@ -25,6 +25,7 @@
 
 \usepackage{subcaption}
 \usepackage{hyperref}
+\usepackage{pdfpages}
 \newcommand{\FA}[1]{\begingroup\color{magenta}#1\endgroup}
 \newcommand{\TODO}[1]{\begingroup\color{red}#1\endgroup}
 %opening
@@ -472,6 +473,7 @@ Version 2016~\cite{Cytokegg}
 
 \subsection*{Software Availability}
 
+\noindent
 Source code:
 https://github.com/MariamFarman/Modulated-SubGraph-Finder \newline Software
 license: Creative Commons Attribution 4.0 International License
@@ -537,9 +539,6 @@ SFB F43.
 	}
 \end{figure*}
 
-
-
-
 \begin{figure*}[p]
 	\centering
 	\fbox{
@@ -562,7 +561,7 @@ SFB F43.
 	\fbox{
 		\begin{minipage}{10 cm}
 	\includegraphics[width=1.0\linewidth]{MSFvsReactomeUpsetPlot}
-	\caption{The Upset plot shows the number of common pathways between different time-point and cut offs. }
+	\caption{The Upset plot shows the number of shared pathways between different time-point and cut offs. All the different toll-like receptor signaling pathways identified from \texttt{MSF} identified genes are marked. }
 	\label{fig:msfvsreactome}
 \end{minipage}
 }
