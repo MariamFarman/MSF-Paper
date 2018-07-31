@@ -128,23 +128,24 @@ Although carefully produced, the assignment of genes to those predefined
 pathway unites can be considered to be subjective to some degree and
 suffers from observational bias~\cite{schnoes2013biases}.
 
-Existing pathway-based analysis approaches use different research designs,
-which can be categorized into ORA (Over-representation analysis), FCS
-(Functional class scoring) and pathway topology based methods. All of which
-aim to find a subset of genes, e.g., significantly differentially
-expressed genes, genes associated with a certain pathway more often than
-expected given the total set of examined genes, e.g.~the whole genome
-background.  ORA \cite{} is the first and the most basic method of pathway
-analysis. It uses a DEG list with user defined cut-off for the log-fold
-change and \textit{p}-value (most commonly using absolute log-fold change
-$\geq$ 2 and \textit{p}-value $\leq$ 0.05). Subsequently, sets of genes
-associated with annotated pathways are tested for being over-represented in
-the set of DEGs. To this end, hyper-geometric distribution, chi-square
-tests, binomial probability or the Fisher’s exact test are used. Thereby
-the information of the topology of genes in the pathways is
-neglected~\cite{Bayer}. Furthermore, ORA assumes that the biological
-pathways are independent of each other and ignores the fact that they
-cross-talk and overlap~\cite{Khatri2012,Campos}.
+Existing pathway-based analysis approaches use different research
+designs, which can be categorized into ORA (Over-representation
+analysis), FCS (Functional class scoring) and pathway topology based
+methods. All of which aim to find a subset of genes, e.g.,
+significantly differentially expressed genes, genes associated with a
+certain pathway more often than expected given the total set of
+examined genes, e.g.~the whole genome background.  \ILH{ORA \cite{} is
+  the first and the most basic method of pathway analysis.} It uses a
+DEG list with user defined cut-off for the log-fold change and
+\textit{p}-value (most commonly using absolute log-fold change $\geq$
+2 and \textit{p}-value $\leq$ 0.05). Subsequently, sets of genes
+associated with annotated pathways are tested for being
+over-represented in the set of DEGs. To this end, hyper-geometric
+distribution, chi-square tests, binomial probability or the Fisher’s
+exact test are used. Thereby the information of the topology of genes
+in the pathways is neglected~\cite{Bayer}. Furthermore, ORA assumes
+that the biological pathways are independent of each other and ignores
+the fact that they cross-talk and overlap~\cite{Khatri2012,Campos}.
 
 Unlike ORA, FCS has no artificial cut-off to define a DEG list. FCS works in
 three steps. First it calculates the gene-level statistics including
