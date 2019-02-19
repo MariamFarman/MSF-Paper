@@ -1,0 +1,186 @@
+\begin{thebibliography}{23}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Malone and Oliver(2011)]{DEG}
+John~H Malone and Brian Oliver.
+\newblock Microarrays, deep sequencing and the true measure of the
+  transcriptome.
+\newblock \emph{BMC biology}, 9\penalty0 (1):\penalty0 34, 2011.
+
+\bibitem[Khatri et~al.(2012)Khatri, Sirota, and Butte]{Khatri2012}
+Purvesh Khatri, Marina Sirota, and Atul~J Butte.
+\newblock Ten years of pathway analysis: current approaches and outstanding
+  challenges.
+\newblock \emph{PLoS computational biology}, 8\penalty0 (2):\penalty0 e1002375,
+  2012.
+
+\bibitem[Garc{\'\i}a-Campos et~al.(2015)Garc{\'\i}a-Campos,
+  Espinal-Enr{\'\i}quez, and Hern{\'a}ndez-Lemus]{Campos}
+Miguel~A Garc{\'\i}a-Campos, Jes{\'u}s Espinal-Enr{\'\i}quez, and Enrique
+  Hern{\'a}ndez-Lemus.
+\newblock Pathway analysis: state of the art.
+\newblock \emph{Frontiers in physiology}, 6:\penalty0 383, 2015.
+
+\bibitem[Kanehisa and Goto(2000)]{Kegg}
+Minoru Kanehisa and Susumu Goto.
+\newblock Kegg: kyoto encyclopedia of genes and genomes.
+\newblock \emph{Nucleic acids research}, 28\penalty0 (1):\penalty0 27--30,
+  2000.
+
+\bibitem[Fabregat et~al.(2018)Fabregat, Jupe, Matthews, Sidiropoulos,
+  Gillespie, Garapati, Haw, Jassal, Korninger, May, et~al.]{Reactome}
+Antonio Fabregat, Steven Jupe, Lisa Matthews, Konstantinos Sidiropoulos, Marc
+  Gillespie, Phani Garapati, Robin Haw, Bijay Jassal, Florian Korninger, Bruce
+  May, et~al.
+\newblock The reactome pathway knowledgebase.
+\newblock \emph{Nucleic acids research}, 46\penalty0 (Database issue):\penalty0
+  D649, 2018.
+
+\bibitem[Schnoes et~al.(2013)Schnoes, Ream, Thorman, Babbitt, and
+  Friedberg]{schnoes2013biases}
+Alexandra~M Schnoes, David~C Ream, Alexander~W Thorman, Patricia~C Babbitt, and
+  Iddo Friedberg.
+\newblock Biases in the experimental annotations of protein function and their
+  effect on our understanding of protein function space.
+\newblock \emph{PLoS computational biology}, 9\penalty0 (5):\penalty0 e1003063,
+  2013.
+
+\bibitem[Bayerlov{\'a} et~al.(2015)Bayerlov{\'a}, Jung, Kramer, Klemm,
+  Bleckmann, and Bei{\ss}barth]{Bayer}
+Michaela Bayerlov{\'a}, Klaus Jung, Frank Kramer, Florian Klemm, Annalen
+  Bleckmann, and Tim Bei{\ss}barth.
+\newblock Comparative study on gene set and pathway topology-based enrichment
+  methods.
+\newblock \emph{BMC bioinformatics}, 16\penalty0 (1):\penalty0 334, 2015.
+
+\bibitem[Michalak(2008)]{Michalak}
+Pawel Michalak.
+\newblock Coexpression, coregulation, and cofunctionality of neighboring genes
+  in eukaryotic genomes.
+\newblock \emph{Genomics}, 91\penalty0 (3):\penalty0 243--248, 2008.
+
+\bibitem[Morris et~al.(2018)Morris, Jensen, and Doncheva]{StringApp}
+John Morris, Lars~Juhl Jensen, and Nadezhda~T. Doncheva.
+\newblock {stringApp 1.3.0}.
+\newblock \url{http://apps.cytoscape.org/apps/stringapp}, 2018.
+\newblock [Online; accessed 19-Februar-2018].
+
+\bibitem[Shannon et~al.(2003)Shannon, Markiel, Ozier, Baliga, Wang, Ramage,
+  Amin, Schwikowski, and Ideker]{Cyto}
+Paul Shannon, Andrew Markiel, Owen Ozier, Nitin~S Baliga, Jonathan~T Wang,
+  Daniel Ramage, Nada Amin, Benno Schwikowski, and Trey Ideker.
+\newblock Cytoscape: a software environment for integrated models of
+  biomolecular interaction networks.
+\newblock \emph{Genome research}, 13\penalty0 (11):\penalty0 2498--2504, 2003.
+
+\bibitem[Hartung(1998)]{Hartung}
+Joachim Hartung.
+\newblock A note on combining dependent tests of significance.
+\newblock Technical report, Technical Report, SFB 475:
+  Komplexit{\"a}tsreduktion in Multivariaten Datenstrukturen, Universit{\"a}t
+  Dortmund, 1998.
+
+\bibitem[Robinson et~al.(2010)Robinson, McCarthy, and Smyth]{edgeR}
+Mark~D Robinson, Davis~J McCarthy, and Gordon~K Smyth.
+\newblock edger: a bioconductor package for differential expression analysis of
+  digital gene expression data.
+\newblock \emph{Bioinformatics}, 26\penalty0 (1):\penalty0 139--140, 2010.
+
+\bibitem[Love et~al.(2014)Love, Huber, and Anders]{love2014moderated}
+Michael~I Love, Wolfgang Huber, and Simon Anders.
+\newblock Moderated estimation of fold change and dispersion for rna-seq data
+  with deseq2.
+\newblock \emph{Genome biology}, 15\penalty0 (12):\penalty0 550, 2014.
+
+\bibitem[Olejnik et~al.(2017)Olejnik, Forero, Deflub{\'e}, Hume, Manhart,
+  Nishida, Marzi, Katze, Ebihara, Rasmussen, et~al.]{Olejnik}
+Judith Olejnik, Adriana Forero, Laure~R Deflub{\'e}, Adam~J Hume, Whitney~A
+  Manhart, Andrew Nishida, Andrea Marzi, Michael~G Katze, Hideki Ebihara,
+  Angela~L Rasmussen, et~al.
+\newblock Ebolaviruses associated with differential pathogenicity induce
+  distinct host responses in human macrophages.
+\newblock \emph{Journal of virology}, 91\penalty0 (11):\penalty0 e00179--17,
+  2017.
+
+\bibitem[Prins et~al.(2009)Prins, C{\'a}rdenas, and Basler]{Prins}
+Kathleen~C Prins, Washington~B C{\'a}rdenas, and Christopher~F Basler.
+\newblock Ebola virus protein vp35 impairs the function of interferon
+  regulatory factor-activating kinases ikk$\varepsilon$ and tbk-1.
+\newblock \emph{Journal of virology}, 83\penalty0 (7):\penalty0 3069--3077,
+  2009.
+
+\bibitem[Konde et~al.(2017)Konde, Baker, Traore, Sow, Camara, Mara, Barry,
+  Kaba, Richard, Beavogui, et~al.]{Konde}
+Mandy~Kader Konde, Darren~P Baker, Fode~Amara Traore, Mamadou~Saliou Sow,
+  Alioune Camara, Doussou Mara, Abdoulaye Barry, Ibrahima Kaba, Amento~Ablam
+  Richard, Abdoul~Habib Beavogui, et~al.
+\newblock Interferon $\beta$-1a for the treatment of ebola virus disease: A
+  historically controlled, single-arm proof-of-concept trial.
+\newblock \emph{PloS one}, 12\penalty0 (2):\penalty0 e0169255, 2017.
+
+\bibitem[Rhein et~al.(2015)Rhein, Powers, Rogers, Anantpadma, Singh, Sakurai,
+  Bair, Miller-Hunt, Sinn, Davey, et~al.]{Rhein}
+Bethany~A Rhein, Linda~S Powers, Kai Rogers, Manu Anantpadma, Brajesh~K Singh,
+  Yasuteru Sakurai, Thomas Bair, Catherine Miller-Hunt, Patrick Sinn, Robert~A
+  Davey, et~al.
+\newblock Interferon-$\gamma$ inhibits ebola virus infection.
+\newblock \emph{PLoS pathogens}, 11\penalty0 (11):\penalty0 e1005263, 2015.
+
+\bibitem[Falasca et~al.(2015)Falasca, Agrati, Petrosillo, Di~Caro, Capobianchi,
+  Ippolito, and Piacentini]{Falasca}
+L~Falasca, C~Agrati, N~Petrosillo, A~Di~Caro, MR~Capobianchi, G~Ippolito, and
+  M~Piacentini.
+\newblock Molecular mechanisms of ebola virus pathogenesis: focus on cell
+  death.
+\newblock \emph{Cell death and differentiation}, 22\penalty0 (8):\penalty0
+  1250, 2015.
+
+\bibitem[C{\'a}rdenas et~al.(2006)C{\'a}rdenas, Loo, Gale, Hartman, Kimberlin,
+  Mart{\'\i}nez-Sobrido, Saphire, and Basler]{Cardenas}
+Washington~B C{\'a}rdenas, Yueh-Ming Loo, Michael Gale, Amy~L Hartman,
+  Christopher~R Kimberlin, Luis Mart{\'\i}nez-Sobrido, Erica~Ollmann Saphire,
+  and Christopher~F Basler.
+\newblock Ebola virus vp35 protein binds double-stranded rna and inhibits
+  alpha/beta interferon production induced by rig-i signaling.
+\newblock \emph{Journal of virology}, 80\penalty0 (11):\penalty0 5168--5178,
+  2006.
+
+\bibitem[Wu et~al.(2016)Wu, Feng, and Stein]{Cytokegg}
+Guanming Wu, Xin Feng, and Lincoln Stein.
+\newblock {Reactome FIs}.
+\newblock \url{https://reactome.org/download-data}, 2016.
+\newblock [Online; Version 2016].
+
+\bibitem[Veljkovic et~al.(2015)Veljkovic, Glisic, Muller, Scotch, Branch,
+  Perovic, Sencanski, Veljkovic, and Colombatti]{Veljkovic}
+Veljko Veljkovic, Sanja Glisic, Claude~P Muller, Matthew Scotch, Donald~R
+  Branch, Vladimir~R Perovic, Milan Sencanski, Nevena Veljkovic, and Alfonso
+  Colombatti.
+\newblock In silico analysis suggests interaction between ebola virus and the
+  extracellular matrix.
+\newblock \emph{Frontiers in microbiology}, 6:\penalty0 135, 2015.
+
+\bibitem[Ideker et~al.(2002)Ideker, O., B., and F.]{jActiveModules}
+Ozier Ideker, Schwikowski O., Siegel B., and A.~F.
+\newblock Discovering regulatory and signalling circuits in molecular
+  interaction networks.
+\newblock \emph{Bioinformatics}, 18:\penalty0 S233--S240, 2002.
+
+\bibitem[Subramanian et~al.(2005)Subramanian, Tamayo, Mootha, Mukherjee, Ebert,
+  Gillette, Paulovich, Pomeroy, Golub, Lander, and Mesirov]{Subramanian15545}
+Aravind Subramanian, Pablo Tamayo, Vamsi~K. Mootha, Sayan Mukherjee,
+  Benjamin~L. Ebert, Michael~A. Gillette, Amanda Paulovich, Scott~L. Pomeroy,
+  Todd~R. Golub, Eric~S. Lander, and Jill~P. Mesirov.
+\newblock Gene set enrichment analysis: A knowledge-based approach for
+  interpreting genome-wide expression profiles.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 102\penalty0
+  (43):\penalty0 15545--15550, 2005.
+\newblock ISSN 0027-8424.
+\newblock \doi{10.1073/pnas.0506580102}.
+\newblock URL \url{https://www.pnas.org/content/102/43/15545}.
+
+\end{thebibliography}
