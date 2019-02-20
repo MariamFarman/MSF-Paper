@@ -88,7 +88,6 @@ Joachim Hartung.
   Komplexit{\"a}tsreduktion in Multivariaten Datenstrukturen, Universit{\"a}t
   Dortmund, 1998.
 
-
 \bibitem[Robinson et~al.(2010)Robinson, McCarthy, and Smyth]{edgeR}
 Mark~D Robinson, Davis~J McCarthy, and Gordon~K Smyth.
 \newblock edger: a bioconductor package for differential expression analysis of
@@ -154,14 +153,6 @@ Washington~B C{\'a}rdenas, Yueh-Ming Loo, Michael Gale, Amy~L Hartman,
 \newblock \emph{Journal of virology}, 80\penalty0 (11):\penalty0 5168--5178,
   2006.
 
-
-\bibitem[Robinson et~al.(2010)Robinson, McCarthy, and Smyth]{edgeR}
-Mark~D Robinson, Davis~J McCarthy, and Gordon~K Smyth.
-\newblock edger: a bioconductor package for differential expression analysis of
-  digital gene expression data.
-\newblock \emph{Bioinformatics}, 26\penalty0 (1):\penalty0 139--140, 2010.
-
-
 \bibitem[Wu et~al.(2016)Wu, Feng, and Stein]{Cytokegg}
 Guanming Wu, Xin Feng, and Lincoln Stein.
 \newblock {Reactome FIs}.
@@ -197,10 +188,6 @@ Aravind Subramanian, Pablo Tamayo, Vamsi~K. Mootha, Sayan Mukherjee,
 \newblock \doi{10.1073/pnas.0506580102}.
 \newblock URL \url{https://www.pnas.org/content/102/43/15545}.
 
-\bibitem[Love et~al.(2014)Love, Huber, and Anders]{love2014moderated}
-Michael~I Love, Wolfgang Huber, and Simon Anders.
-\newblock Moderated estimation of fold change and dispersion for rna-seq data
-  with deseq2.
 \newblock \emph{Genome biology}, 15\penalty0 (12):\penalty0 550, 2014.
 
 
