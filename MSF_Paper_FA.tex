@@ -26,6 +26,7 @@
 \usepackage{subcaption}
 \usepackage{hyperref}
 \usepackage{pdfpages}
+\usepackage[normalem]{ulem}
 \newcommand{\FA}[1]{\begingroup\color{magenta}#1\endgroup}
 \newcommand{\ILH}[1]{\begingroup\color{blue}#1\endgroup}
 \newcommand{\TODO}[1]{\begingroup\color{red}#1\endgroup}
@@ -144,7 +145,7 @@
 	cross-talk and overlap of the pathways~\cite{Khatri2012,Campos}. Pathway
 	topology based methods are similar to FCS except that they consider the
 	topology of each gene during the gene-level statistics but still lacks to aim
-	to link the different functional pathways~\cite{Khatri2012}.
+	to link the different functional pathways~\cite{Khatri2012}. \FA{mention jActiveModules somewhere in the intro}
 	
 	On these grounds we propose a novel approach to make use of the rich gene
 	and protein interaction annotation resources available, to gain additional
@@ -174,7 +175,7 @@
 	analysis returns sub-graphs and their joint confidence scores, reflecting
 	how the perturbation is migrated through the network. Furthermore, the
 	entry points of perturbation in the networks and overlap with conventional
-	pathway categories are returned. The output is prepared in a directed
+	pathway categories are returned \FA{mention impact score and reliablilty of sources here}. The output is prepared in a directed
 	adjacency file, convenient for visualization, e.g., with
 	StringApp~\cite{StringApp}, available as a Cytoscape plug-in~\cite{Cyto}.
 	
@@ -255,220 +256,395 @@
 	
 	\textbf{Extending modulated sub-graphs}
 	
-	In the next step, we check if any of the initial modulated sub-graphs 
-	could further be extended. This is done when the sub-graph could not be extended any more to the direct neighboring gene due to a high \textit{p}-value, but the neighboring gene to the direct neighboring gene has a low \textit{p}-value. This was required to connect together low \textit{p}-value gene but incorporating a single high \textit{p}-value gene. If the combined \textit{p}-value of the initial modulated sub-graph and the extension genes is smaller than the \textit{p}-value of the initial sub-graph the extension is accepted. All possible extension paths up to \emph{3} (default 2) genes at
-	all nodes in the sub-graph are tested. Again, this step is iteratively repeated until
-	no further genes are added to the significant differentially expressed
-	sub-graphs. This step bridges small gaps of genes without a clear
-	differential signal in the DGEA.\newline
+	In the next step, we check if any of the initial modulated
+        sub-graphs could further be extended \FA{beyond the immediate
+          neighbouring genes. Instead of testing single genes and
+          their compatibility to be added, groups of genes are
+          considered.}
+
+        \sout{This is done when the sub-graph could not be extended any more
+        to the direct neighboring gene due to a high \textit{p}-value,
+        but the neighboring gene to the direct neighboring gene has a
+        low \textit{p}-value. This was required to connect together
+        low \textit{p}-value gene but incorporating a single high
+        \textit{p}-value gene.} If the combined \textit{p}-value of the
+        initial modulated sub-graph and the extension genes is smaller
+        than the \textit{p}-value of the initial sub-graph the
+        extension is accepted. All possible extension paths up to
+        \emph{3} (default 2) genes at all nodes in the sub-graph are
+        tested. Again, this step is iteratively repeated until no
+        further genes are added to the significant differentially
+        expressed sub-graphs. This step bridges small gaps of genes
+        without a clear differential signal in the DGEA.\newline
 	
 	\textbf{Merging modulated sub-graphs}
-	
-	After detection and extension of the modulated sub-graphs, they are tested
-	if combining the different sub-graphs score better than on their own. The merging of the sub-graphs is done by depth first search traversal from one sub-graph to the other sub-graph. If the two sub-graphs merge
-	with the connector of at most \emph{3} genes (default 2 gene) and the
-	combined \textit{p}-value of the merged sub-graph including the bridging
-	genes in between is less than the individual \textit{p}-values of the two
-	sub-graphs, the two sub-graphs are merged together to one big modulated
-	sub-graph. This step is repeated iteratively until no sub-graphs could be
-	merged.\newline
+
+        \FA{After detection and extension of the modulated sub-graphs,
+          each pair of so far identified sub-graphs is tested if its
+          combination scores better than each on its own.}
+        \sout{After detection and extension of the modulated
+          sub-graphs, they are tested if combining the different
+          sub-graphs score better than on their own.} The merging of
+        the sub-graphs is done by depth first search traversal from
+        one sub-graph to the other sub-graph. If the two sub-graphs
+        merge with the connector of at most \emph{3} genes (default 2
+        gene) and the combined \textit{p}-value of the merged
+        sub-graph including the bridging genes in between is less than
+        the individual \textit{p}-values of the two sub-graphs, the
+        two sub-graphs are merged together to one big\FA{ger}
+        modulated sub-graph. This step is repeated iteratively until
+        no sub-graphs \sout{could be merged}\FA{can be merged
+          anymore}.\newline
 	
 	\textbf{Finding sources \& sinks}
 	
-	In a last post processing step \texttt{MSF} identifies the trigger points
-	of the modulated sub-graphs. These trigger genes are the sources of the
-	sub-graphs with only outgoing edges. These genes can be interpreted as the
-	possible entry points of perturbation from where the stimulus causes
-	downstream effects. Each individual source is given an impact score, depending on the number of down stream genes effected in the corresponding sub-graph, equipping with a way to choose the most significant genes for unknown phenotypes or biological processes. In the same spirit the most downstream genes of the
-	modulated sub-graphs are identified and defined as sinks. Due to loops not all
-	sub-graphs are guaranteed to have sources or sinks.
+	In a last post processing step \texttt{MSF} identifies the
+        trigger points of the modulated sub-graphs. These trigger
+        genes are the sources of the sub-graphs with only outgoing
+        edges. These genes can be interpreted as the possible entry
+        points of perturbation from where the stimulus causes
+        downstream effects. Each individual source is given an impact
+        score, \FA{expressing the relative number of downstream genes
+          within the corresponding sub-graph directly connected by
+          directed links. This score can be interpreted as an upper
+          limit of how much of the sub-graph's perturbation could have
+          been introduced by the respective source, and thereby could
+          be helpful to prioritize different identified sources for
+          larger sub-graphs.}\sout{depending on the number of down
+          stream genes effected in the corresponding sub-graph,
+          equipping with a way to choose the most significant genes
+          for unknown phenotypes or biological processes.} In the same
+        spirit \FA{as sources}, the most downstream genes of the
+        modulated sub-graphs are identified and defined as sinks. Due
+        to loops not all sub-graphs are guaranteed to have sources or
+        sinks.
+
+        \TODO{?what about source reliability?}
 	
 	
 	\textbf{MSF output}
 	
-	\texttt{MSF} generates a directed network file as an output, containing complete directed interactions of all modulated sub-graphs identified. This file could be imported into Cytoscape~\cite{Cyto} for visualization. Second output is the source \& sink file. It contains for all the modulated sub-graphs, sources and sinks identified with the source impact scores. The third output, source weightage is provided as a node attribute file. It could be imported into Cytoscape to see the impact score of sources as the size of the node and log-fold change could be used to see how the regulation of different gene hubs in the modulated sub-graphs look.
+	\texttt{MSF} generates a directed network file as an output,
+        containing complete directed interactions of all modulated
+        sub-graphs identified. This file could be imported into
+        Cytoscape~\cite{Cyto} for visualization. \sout{Second output
+          is the source \& sink file. It contains} \FA{Additionally, a
+          file containing details on all sources and sinks for all
+          modulated sub-graphs is reported. Furthermore, for
+          facilitated visualisation in Cytoscape, a node attribute
+          file is provided, containing the source weightage and the
+          log-fold chances of all considered genes}. \sout{The third output,
+        source weightage is provided as a node attribute file. It
+        could be imported into Cytoscape to see the impact score of
+        sources as the size of the node and log-fold change could be
+        used to see how the regulation of different gene hubs in the
+        modulated sub-graphs look.}
 	
 	\textbf{Operation}
 	
-	MSF requires Java version 8 and JDK 1.8. The few package dependencies are already been added to the release. MSF runs fast on a standard laptop computer and so it has normal system requirements. To run MSF, the user must provide two text files, one containing the DGEA and the second one containing directed interactions in an adjacency format file. Example files and a detailed tutorial to use MSF has been provided on github https://github. com/Modulated-Subgraph-Finder/MSF.
+	MSF requires Java version 8 and JDK 1.8. The few package
+        dependencies are already been added to the release. MSF runs
+        fast on a standard laptop computer and so it has normal system
+        requirements \TODO{What is fast and what is normal?}. To run
+        MSF, the user must provide two text files, one containing the
+        DGEA \TODO{DESeq2 edgR?} and the second one containing
+        directed interactions in an adjacency format file. Example
+        files and a detailed tutorial to use MSF has been provided on
+        github https://github. com/Modulated-Subgraph-Finder/MSF.
 	
 	
 	\section*{Results}
 	
 	\subsection*{Case study}
 	
-	To demonstrate its usefulness, \texttt{MSF} is applied to RNA-seq data
-	set of primary human monocyte-derived macrophages (MDMs) infected with
-	Ebola virus (GSE84188)~\cite{Olejnik}. Ebola Virus (EBOV) belongs to the Filoviridea family: filamentous, enveloped and single stranded RNA
-	viruses. EBOV causes hemorrhagic fever in humans, inducing the host innate
-	and adaptive immune response to be unable to control virus
-	infection~\cite{Prins}. Currently, there are no approved antiviral drugs
-	for the treatment of Ebola virus infection~\cite{Konde,Rhein}.  The initial
-	targets of EBOV are the macrophages and dendritic immune
-	cells~\cite{Falasca,Rhein}. EBOV inhibits the critical innate immune
-	response of the host, which includes the activation of alpha/beta
-	interferon (IFN-$\alpha / \beta$)~\cite{Prins,Konde,Cardenas}. It has been
-	proposed that IFN-$\alpha / \beta$ should be tested against Ebola for its
-	antiviral activity through clinical trials~\cite{Konde}. Ebola infection
-	data was selected to test the approach because it has been well recognized for the last several decades, and vast literature is available for the pathogenesis of Ebola, thereby, facilitating the verification of the results of
-	\texttt{MSF} with the vast literature present on Ebola
-	infection. Especially, the detection of IFN-$\alpha / \beta$ as point of
-	action for the virus, could be considered as a basic indicator of the
-	correctness and usefulness of the approach.
+	To demonstrate its usefulness, \texttt{MSF} is applied to
+        RNA-seq data set of primary human monocyte-derived macrophages
+        (MDMs) infected with Ebola virus
+        (GSE84188)~\cite{Olejnik}. Ebola Virus (EBOV) belongs to the
+        Filoviridea family: filamentous, enveloped and single stranded
+        RNA viruses. EBOV causes hemorrhagic fever in humans, inducing
+        the host innate and adaptive immune response to be unable to
+        control virus infection~\cite{Prins}. Currently, there are no
+        approved antiviral drugs for the treatment of Ebola virus
+        infection~\cite{Konde,Rhein}.  The initial targets of EBOV are
+        the macrophages and dendritic immune
+        cells~\cite{Falasca,Rhein}. EBOV inhibits the critical innate
+        immune response of the host, which includes the activation of
+        alpha/beta interferon (IFN-$\alpha /
+        \beta$)~\cite{Prins,Konde,Cardenas}. It has been proposed that
+        IFN-$\alpha / \beta$ should be tested against Ebola for its
+        antiviral activity through clinical trials~\cite{Konde}. Ebola
+        infection data was selected to test the approach because it
+        has been well recognized for the last several decades, and
+        vast literature is available for the pathogenesis of Ebola,
+        thereby, facilitating the verification of the results of
+        \texttt{MSF} with the vast literature present on Ebola
+        infection. Especially, the detection of IFN-$\alpha / \beta$
+        as point of action for the virus, could be considered as a
+        basic indicator of the correctness and usefulness of the
+        approach.
 	
-	EBOV infection count data was downloaded from GEO (GSE84188), it describes the course of infection at three
-	time-points 6, 24 and 48 hour post infection (hpi). Differential
-	gene expression analysis was performed on the count data with edgeR package
-	(version 3.4.2)~\cite{edgeR} using an upper-quartile normalization. The DEG analysis results generated by edgeR
-	were used as input for \texttt{MSF}. Cell signaling interactions
-	were filtered from Reactome Functional interactions (FIs) Version
-	2016~\cite{Cytokegg} for only direct interactions, which was used as a second input for \texttt{MSF}.
+	EBOV infection count data was downloaded from GEO (GSE84188),
+        it describes the course of infection at three time-points 6,
+        24 and 48 hour post infection (hpi). Differential gene
+        expression analysis was performed on the count data with edgeR
+        package (version 3.4.2)~\cite{edgeR} using an upper-quartile
+        normalization. The DEG analysis results generated by edgeR
+        were used as input for \texttt{MSF}. Cell signaling
+        interactions were filtered from Reactome Functional
+        interactions (FIs) Version 2016~\cite{Cytokegg} for only
+        direct interactions, which was used as a second input for
+        \texttt{MSF}.
 	
-	For the earliest time point at 6~hpi, three large modulated sub-graphs were identified with 42,
-	139, and 69 genes.
-	The modulated sub-graphs consist predominantly of cytokines, chemokines
-	(CXCL10, CCL8, CXCL9, CXCL11, CXCR4, CCR7, CCL4L1, CCL3L1, CCL4, CCL8, CCL20, CCL3, CCL19) and Interleukin genes (IL6, IL27, IL23).
-	IFNB1 and IFNA1 were both identified as two of the possible sources
-	in the most significantly modulated sub-graph identified with 42 genes. The impact score of IFNB1 is 14.5\% and IFNA1 is 8.7\% for the sub-graph they belong to.
-	Most of the sources identified by \texttt{MSF} were
-	type~I interferon induced genes (Supplement material).
-	At 24~hpi seven modulated sub-graphs were
-	identified with four main sub-graphs consisting
-	of 61, 222, 130 and 242 genes, others being smaller than 6 genes. Again, IFNB1
-	and IFNA1 were identified as two sources out of the total sources with 3.9\% and 1.6\% impact score. For the last time-point 48~hpi,
-	six modulated sub-graphs were identified. Three of the sub-graphs were
-	less than ten genes and main sub-graphs had 217, 224 and 276 genes. IFNB1 and IFNA1 were identified as sources in
-	the most significantly modulated sub-graph with an impact score of 2.8\% and 3.7\% (Supplement material).
+	For the earliest time point at 6~hpi, three large modulated
+        sub-graphs were identified with 42, 139, and 69 genes.  The
+        modulated sub-graphs consist predominantly of cytokines,
+        chemokines (CXCL10, CCL8, CXCL9, CXCL11, CXCR4, CCR7, CCL4L1,
+        CCL3L1, CCL4, CCL8, CCL20, CCL3, CCL19) and Interleukin genes
+        (IL6, IL27, IL23).  IFNB1 and IFNA1 were both identified as
+        two of the possible sources in the most significantly
+        modulated sub-graph identified with 42 genes. The impact score
+        of IFNB1 is 14.5\% and IFNA1 is 8.7\% for the sub-graph they
+        belong to.  Most of the sources identified by \texttt{MSF}
+        were type~I interferon induced genes (Supplement material).
+        At 24~hpi seven modulated sub-graphs were identified with four
+        main sub-graphs consisting of 61, 222, 130 and 242 genes,
+        others being smaller than 6 genes. Again, IFNB1 and IFNA1 were
+        identified as two sources out of the total sources with 3.9\%
+        and 1.6\% impact score. For the last time-point 48~hpi, six
+        modulated sub-graphs were identified. Three of the sub-graphs
+        were less than ten genes and main sub-graphs had 217, 224 and
+        276 genes. IFNB1 and IFNA1 were identified as sources in the
+        most significantly modulated sub-graph with an impact score of
+        2.8\% and 3.7\% (Supplement material). \TODO{was the mentioned
+          impact score the highest of all sources? How many sources
+          are there?}
 	
-	As stated earlier IFN-$\alpha / \beta$ was reported to be one of the target
-	genes of Ebola infection. We were able to successfully identify IFNA1 and IFNB1 as
-	sources in all three Ebola infection time-points. Although IFNA1 and IFNB1 were already among the most
-	significant genes in the DGEA during the later time points, \texttt{MSF} was
-	also able to detect them as a source in the very early time-point when the
-	genes were not significant based on the individual DGEA alone. Identifying
-	the possible sources will reduce the search space for potential target
-	genes and can help the biologist as the starting point of clinical testing
-	for drugs and vaccines against an infection.
+	As stated earlier IFN-$\alpha / \beta$ was reported to be one
+        of the target genes of Ebola infection. We were able to
+        successfully identify IFNA1 and IFNB1 as sources in all three
+        Ebola infection time-points. Although IFNA1 and IFNB1 were
+        already among the most significant genes in the DGEA during
+        the later time points, \texttt{MSF} was also able to detect
+        them as a source in the very early time-point when the genes
+        were not significant based on the individual DGEA
+        alone. Identifying the possible sources will reduce the search
+        space for potential target genes and can help the biologist as
+        the starting point of clinical testing for drugs and vaccines
+        against an infection.
 	
-	Table~\ref{tab:rawVsHartung} compares the results of \texttt{MSF}, namely
-	the number of detected sub-modules and their total genes numbers, to a
-	simple analysis of mapping significantly modulated genes from the DGEA to
-	the network and joining neighbors to modules. The numbers indicate that
-	\texttt{MSF} detects less but larger and meaningful sub-modules, applying its statistical
-	test. Furthermore, the dependency of the results from the \textit{p}-value cutoff
-	choice is demonstrated for the DGEA, which is avoided for \texttt{MSF}
-	altogether. It showcases how applying different cut-offs to the \textit{p}-value of genes from edgeR to the sub-graphs identified by \texttt{MSF} breaks the larger sub-graphs to many smaller unconnected sub-graphs, many of which are single genes.
+	Table~\ref{tab:rawVsHartung} compares the results of
+        \texttt{MSF}, namely the number of detected sub-modules and
+        their total genes numbers, to a simple analysis of mapping
+        significantly modulated genes from the DGEA to the network and
+        joining neighbors to modules. The numbers indicate that
+        \texttt{MSF} detects less but larger and meaningful \TODO{?}
+        sub-modules, applying its statistical test. Furthermore, the
+        dependency of the results from the \textit{p}-value cutoff
+        choice is demonstrated for the DGEA, which is avoided for
+        \texttt{MSF} altogether. It showcases how applying different
+        cut-offs to the \textit{p}-value of genes from edgeR to the
+        sub-graphs identified by \texttt{MSF} breaks the larger
+        sub-graphs to many smaller unconnected sub-graphs, many of
+        which are single genes.
 	
 	\subsection*{Modulated sub-graphs at 6~hpi}
 	
-	Three main modulated sub-graphs identified by \texttt{MSF} at 6~hpi are
-	shown in Fig.~\ref{fig:Sub-graph6hpi}. The graphs represent the immediate output of the \texttt{MSF}-analysis,
-	visualized by StringApp~\cite{StringApp} in Cytoscape~\cite{Cyto}. Each
-	node represents a gene part of a modulated sub-graph, whereby the
-	associated colors code the functional annotation deduced from KEGG
-	Pathways. The cross-talk between the pathways and also the multiple
-	employment of many genes is evident. The flow of information between
-	the sensors and effectors in this particular example could easily be deduced.
-	In more detail, sub-graph~1 (bottom) shows how the activation of toll-like
-	receptor, cytokine, chemokine activating jak-stat and mapk genes, together with TNF leads into apoptosis. The next significant sub-graph (sub-graph~2: top right) reveals
-	how information from the Extra-cellular matrix (ECM) receptor, which are
-	reported to interact with Ebola glycoprotein (GP)~\cite{Veljkovic}, chemokines, cytokines, and cytosolic DNA sensing are directly or indirectly controlling cell growth, differentiation, proliferation and apoptosis. It suggests that dysregulation of these pathways is responsible for modulation of apoptosis. Eventually, sub-graph~3 (top left)
-	demonstrates how INFA1 and INFB1 modulates once more, via only a few
-	intermediate steps, the apoptotic response of the cell. On the other side cAMP signaling genes activates platelet genes.
+	Three main modulated sub-graphs identified by \texttt{MSF} at
+        6~hpi are shown in Fig.~\ref{fig:Sub-graph6hpi}. The graphs
+        represent the immediate output of the \texttt{MSF}-analysis,
+        visualized by StringApp~\cite{StringApp} in
+        Cytoscape~\cite{Cyto}. Each node represents a gene part of a
+        modulated sub-graph, whereby the associated colors code the
+        functional annotation deduced from KEGG Pathways. The
+        cross-talk between the pathways and also the multiple
+        employment of many genes is evident. The flow of information
+        between the sensors and effectors can be perceived given the
+        directionality of each interaction, indicated by arrows
+        \sout{in this particular example could easily be deduced}.  In
+        more detail, sub-graph~1 (bottom) shows how the activation of
+        toll-like receptor, cytokine, chemokine activating jak-stat
+        and mapk genes, together with TNF leads into apoptosis. The
+        next significant sub-graph (sub-graph~2: top right) reveals
+        how information from the Extra-cellular matrix (ECM) receptor,
+        which are reported to interact with Ebola glycoprotein
+        (GP)~\cite{Veljkovic}, chemokines, cytokines, and cytosolic
+        DNA sensing are directly or indirectly controlling cell
+        growth, differentiation, proliferation and apoptosis. It
+        suggests that dysregulation of these pathways is responsible
+        for modulation of apoptosis. Eventually, sub-graph~3 (top
+        left) demonstrates how INFA1 and INFB1 modulates once more,
+        via only a few intermediate steps, the apoptotic response of
+        the cell. On the other side cAMP signaling genes activates
+        platelet genes.
 	
-	This display case might advertise with how little effort complex data
-	can be interpreted, help to apprehend the dynamics of the underlying
-	processes and suggest testable hypothesis and potential points of
-	intervention.
+	This display case might advertise with how little effort
+        complex data can be \FA{processed and prepared for
+          interpretation by the domain expert, to } \sout{interpreted,
+          help to} apprehend the dynamics of the underlying processes
+        and suggest testable hypothesis and potential points of
+        intervention.
 	
 	\subsection*{Robustness}
 	
-	A potential concern is how noise in the gene expression measurements
-	affects our analysis. To assess the robustness and stability of our method,
-	we therefore added Poisson distributed noise
-	to the read counts of the three time-points data set, used above.
-	Then DGEA was carried out on the disturbed data
-	with the same parameters as for the native data using edgeR, followed by
-	analysis with \texttt{MSF}. This procedure was carried out 100 times.
-	Every time the genes from the modulated sub-graphs identified from noisy
-	data were compared to the genes of sub-graphs identified from the native
-	data. The robustness of \texttt{MSF} analysis
-	for the time-point 6, 24, and 48~hpi is shown in
-	Fig.~\ref{fig:DEGvsMSF}. The procedure how data noise was modeled can be
-	considered as rather stringent as \texttt{MSF} is sensitive to \textit{p}-value
-	changes across the whole range of possible values. The observed median recall rates lay
-	between 71~\% (6~hpi) and 84~\% (48~hpi).
+	A potential concern is how noise in the gene expression
+        measurements affects our analysis. To assess the robustness
+        and stability of our method, we therefore added Poisson
+        distributed noise to the read counts of the three time-points
+        data set, used above.  Then DGEA was carried out on the
+        disturbed data with the same parameters as for the native data
+        using edgeR, followed by analysis with \texttt{MSF}. This
+        procedure was carried out 100 times.  Every time the genes
+        from the modulated sub-graphs identified from noisy data were
+        compared to the genes of sub-graphs identified from the native
+        data. The robustness of \texttt{MSF} analysis for the
+        time-point 6, 24, and 48~hpi is shown in
+        Fig.~\ref{fig:DEGvsMSF}. The procedure how data noise was
+        modeled can be considered as rather stringent as \texttt{MSF}
+        is sensitive to \textit{p}-value changes across the whole
+        range of possible values. The observed median recall rates lay
+        between 71~\% (6~hpi) and 84~\% (48~hpi).
 	
 	\subsection*{Benchmark}
 	
 	
 	\textbf{jActiveModules}
 	
-	jActiveModules~\cite{jActiveModules} is a plugin in Cytoscape that searches for molecular interaction network to find expression activated sub-networks. The method used to score the expression activated sub-networks is close to the method used in \texttt{MSF}.
+	jActiveModules~\cite{jActiveModules} \TODO{citation missing in
+          bib} is a plugin in Cytoscape that searches for molecular
+        interaction network to find expression activated
+        sub-networks. The method used to score the expression
+        activated sub-networks is close to the method used in
+        \texttt{MSF}. \TODO{what are the differences?}
 	
-	The first time-point of Ebola infection data was analyzed using jActiveModule (Version 3.2.1) to compare the modulated sub-graphs identified by \texttt{MSF} and jActiveModule. The input files were same for both tools, number of modules parameter was set to 5. jActiveModule identified 5 modules, the module with the highest pathScore was selected for comparison with \texttt{MSF} identified modulated sub-graphs. The module consists of a single graph with 314 genes. While \texttt{MSF} identified three directed modulated sub-graphs with 42, 69 and 139 genes. The overlap of the common genes identified between \texttt{MSF} and jActiveModule is shown in Fig~\ref{fig:MSFvsJActiveModule}. It is difficult to state which tool identifies more accurate set of genes as modulated, since there is no golden standard data example to refer. Although jActiveModule identifies single connected module, \texttt{MSF} provides directionality, with the identification of possible perturbation sources of the sub-graphs.
+	The first time-point of Ebola infection data was analyzed
+        using jActiveModule (Version 3.2.1) to compare the modulated
+        sub-graphs identified by \texttt{MSF} and jActiveModule. The
+        input files were same for both tools, number of modules
+        parameter was set to 5 \TODO{what does this parameter
+          do?}. jActiveModule identified 5 modules, the module with
+        the highest pathScore was selected for comparison with
+        \texttt{MSF} identified modulated sub-graphs \TODO{why only 1
+          out of 5?}. The module consists of a single graph with 314
+        genes. While \texttt{MSF} identified three directed modulated
+        sub-graphs with 42, 69 and 139 genes. The overlap of the
+        common genes identified between \texttt{MSF} and jActiveModule
+        is shown in Fig~\ref{fig:MSFvsJActiveModule}. \sout{It is
+          difficult to state which tool identifies more accurate set
+          of genes as modulated, since there is no golden standard
+          data example to refer.} Although jActiveModule identifies
+        single connected module, \texttt{MSF} provides directionality,
+        with the identification of possible perturbation sources of
+        the sub-graphs. \TODO{find reasons why jActiveModules gives so
+          much bigger moduls by comparing the details of the method!}
 	
 	\textbf{Reactome pathway analysis}
 	
-	Gene enrichment analysis was performed using Reactome analyze data
-	tool~\cite{Reactome} (version 67). Reactome's over-representation analysis tool tests whether
-	certain Reactome pathways are enriched for the list of genes submitted to it. Genes from \texttt{MSF} identified
-	sub-graphs for each time-point were analyzed for gene enrichment using this tool.  For
-	comparison the DEG results from edgeR for the three time-points were filtered using the cut-off of
-	adjusted \textit{p}-value > 0.05. This DEG list was used for gene
-	enrichment analysis. The compression of \texttt{MSF} identified sub-graphs gene list and the DEG list analysis is shown in Fig~\ref{fig:msfvsreactome}
+	Gene enrichment analysis was performed using Reactome analyze
+        data tool~\cite{Reactome} (version 67) \TODO{on which
+          data?}. Reactome's over-representation analysis tool tests
+        whether certain Reactome pathways are enriched for the list of
+        genes submitted to it. Genes from \texttt{MSF} identified
+        sub-graphs for each time-point were analyzed for gene
+        enrichment using this tool.  For comparison the DEG results
+        from edgeR for the three time-points were filtered using the
+        cut-off of adjusted \textit{p}-value \sout{>}\FA{<} 0.05. This
+        DEG list was used for gene enrichment analysis. The
+        compression of \texttt{MSF} identified sub-graphs gene list
+        and the DEG list analysis is shown in
+        Fig~\ref{fig:msfvsreactome}
 	
-	All enriched pathways with a cut-off of \textit{p}-value > 0.05 for \texttt{MSF} and DEG list for the three time-points were selected. The comparison shows most of the pathways known from literature
-	to be dis-regulated by Ebola infection are enriched in both the enrichment
-	analysis. Toll-Like receptor signaling pathway when interacts with EBOV
-	glycoprotein (GP), it triggers the activation of
-	cytokines~\cite{Olejnik}. Toll-like receptor pathway is expected to be dis-regulated in the early stage of infection, this pathway was not identified as significantly dis-regulated when \textit{p}-value
-	cut off DEG list was analyzed for enrichment. Nine toll-like receptor cascades TLR10, TLR2, TLR3, TLR4, TLR5, TLR7/8, TLR9, TLR1:TLR2 and TLR6:TLR2 were identified as dis-regulated from gene enrichment analysis of \texttt{MSF} identified sub-graph genes, not a single one of these cascade was shown to be dis-regulated in pathway enrichment analysis from DEG cut-off list. Since \texttt{MSF}
-	considers the complete DEG results, even the weak signal at the earliest
-	time-point was detected; for example Toll-like receptor signaling. While \texttt{MSF} is able to catch weak signals, it does not provide information about the functional relationships among genes like Reactome tool. 
+	All enriched pathways with a cut-off of \textit{p}-value
+        \sout{>}\FA{<} 0.05 0.05 for \texttt{MSF} and DEG list for the
+        three time-points were selected. The comparison shows most of
+        the pathways known from literature to be dis-regulated by
+        Ebola infection are enriched in both the enrichment
+        analysis. Toll-Like receptor signaling pathway when interacts
+        with EBOV glycoprotein (GP), it triggers the activation of
+        cytokines~\cite{Olejnik}. Toll-like receptor pathway is
+        expected to be dis-regulated in the early stage of infection,
+        this pathway was not identified as significantly dis-regulated
+        when \textit{p}-value cut off DEG list was analyzed for
+        enrichment. Nine toll-like receptor cascades TLR10, TLR2,
+        TLR3, TLR4, TLR5, TLR7/8, TLR9, TLR1:TLR2 and TLR6:TLR2 were
+        identified as dis-regulated from gene enrichment analysis of
+        \texttt{MSF} identified sub-graph genes, not a single one of
+        these cascade was shown to be dis-regulated in pathway
+        enrichment analysis from DEG cut-off list. Since \texttt{MSF}
+        considers the complete DEG results, even the weak signal at
+        the earliest time-point was detected; for example Toll-like
+        receptor signaling. While \texttt{MSF} is able to catch weak
+        signals, it does not provide information about the functional
+        relationships among genes like Reactome tool.
 	
 	\textbf{Gene set enrichment analysis (GSEA)}
 	
-	Gene set enrichment analysis (GSEA)~\cite{Subramanian15545} is a method to identify classes of genes or proteins that are over-represented in a large set of genes or proteins. GSEA uses statistical approaches to identify significantly enriched or depleted groups of genes. The complete DEG list from DGEA of the first time-point 6 hpi was analyzed using bioconductor package GSEABase (version 1.44.0). GSEA was able to identify Toll like recpetor, Chemokine signaling pathway, Cytosolic DNA-sensing pathway, Jak-STAT signaling pathway, RIG-I-like receptor signaling pathway and apoptosis as the highest ranked pathways. Although GSEA identified the important pathways for Ebola infection, it did not show how the cross-talk and topology of genes between the pathways identifed. \texttt{MSF} and GSEA uses complete DEG list without any cut-off, is why pathways important for Ebola infection showed up even with weak signal genes in it.
+	Gene set enrichment analysis (GSEA)~\cite{Subramanian15545}
+        \TODO{reference is missing in bib} is a method to identify
+        classes of genes or proteins that are over-represented in a
+        large set of genes or proteins. GSEA uses statistical
+        approaches to identify significantly enriched or depleted
+        groups of genes. The complete DEG list from DGEA of the first
+        time-point 6 hpi was analyzed using bioconductor package
+        GSEABase (version 1.44.0). GSEA was able to identify
+        Toll\FA{-}like recpetor, chemokine signaling pathway,
+        cytosolic DNA-sensing pathway, Jak-STAT signaling pathway,
+        RIG-I-like receptor signaling pathway and apoptosis as the
+        highest ranked pathways. Although GSEA identified the
+        important pathways for Ebola infection, it did not show how
+        the cross-talk and topology of genes between the pathways
+        identifed. \texttt{MSF} and GSEA uses complete DEG list
+        without any cut-off, is why pathways important for Ebola
+        infection showed up even with weak signal genes in it.
 	
 	\section*{Discussion}
 	
-	Classic pathway analysis tools aim to detect in lists of significantly
-	deregulated genes enriched associations with pathway genes categorized by
-	their biological function and their interactions. Thereby, depending on the
-	tool, the internal pathway topology is considered or neglected all
-	together. The here presented tool, \texttt{MSF}, employs a different
-	approach, by aiming to detect sub-graphs in whole gene regulatory networks
-	which are significantly deregulated in a concerted manner. To this end,
-	neighboring genes in the user provided network are tested for jointly
-	common regulation. Exploiting that each gene's abundance, although not
-	independent from its neighbors, is measured repeatedly on its own,
-	sensitivity can be increased by our applied \textit{p}-value meta-analysis, namely
-	Hartung's method. This potentially enables to call just not significant
-	modulated genes based on the DGEA to be convincingly called to be part of a
-	deregulated gene group.  Furthermore, it allows to identify connected
-	sub-graphs, representing the propagation of gene regulation perturbation in
-	the input network. A better understanding of this propagation, especially
-	the critical spots such as sensors, effectors, and hubs, facilitates the projection of potential intervention points,
-	e.g., for drug development. Since \texttt{MSF} only uses interaction
-	information in gene regulation network, but not the functional grouping of
-	the genes into functional pathways, it is especially adapted to discover so
-	called cross-talk between such pathways.
+	Classic pathway analysis tools aim to detect in lists of
+        significantly deregulated genes enriched associations with
+        pathway genes categorized by their biological function and
+        their interactions. Depending on the tool, the internal
+        pathway topology is considered or neglected all together. The
+        here presented tool, \texttt{MSF}, employs a different
+        approach, by aiming to detect sub-graphs in whole gene
+        regulatory networks which are significantly deregulated in a
+        concerted manner. To this end, neighboring genes in the user
+        provided network are tested for jointly common
+        regulation. Exploiting that each gene's abundance, although
+        not independent from its neighbors, is measured repeatedly on
+        its own, sensitivity can be increased by our applied
+        \textit{p}-value meta-analysis, namely Hartung's method. This
+        potentially enables to call just not significant modulated
+        genes based on the DGEA to be convincingly called to be part
+        of a deregulated gene group.  Furthermore, it allows to
+        identify connected sub-graphs, representing the propagation of
+        gene regulation perturbation in the input network. A better
+        understanding of this propagation, especially the critical
+        spots such as sensors, effectors, and hubs, facilitates the
+        projection of potential intervention points, e.g., for drug
+        development. Since \texttt{MSF} only uses interaction
+        information in gene regulation network, but not the functional
+        grouping of the genes into functional pathways, it is
+        especially adapted to discover so called cross-talk between
+        such pathways.
 	
 	
 	\section*{Conclusions}
 	
 	
-	\texttt{MSF} is a fast and easy to use tool to find concertedly
-	modulated sub-graphs in a given network. Its implementation in java enables
-	its use across many operating systems e.g. linux and windows. So far the raw output from edgeR~\cite{edgeR} and DESeq2~\cite{love2014moderated} are supported.
+	\texttt{MSF} is a fast and easy to use tool to find
+        concertedly modulated sub-graphs in a given network. Its
+        implementation in java enables its use across many operating
+        systems e.g. linux and windows. So far the raw output from
+        edgeR~\cite{edgeR} and DESeq2~\cite{love2014moderated} are
+        supported.
 	
 	\subsection*{Source of data}
 	
-	The Ebola infection RNA-seq data set analyzed during the current study are
-	available in the GEO repository (GSE84188)~\cite{Olejnik}. The cell
-	signaling network file used is from Reactome Functional interactions (FIs)
-	Version 2016~\cite{Cytokegg}
+	The Ebola infection RNA-seq data set analyzed during the
+        current study are available in the GEO repository
+        (GSE84188)~\cite{Olejnik}. The cell signaling network file
+        used is from Reactome Functional interactions (FIs) Version
+        2016~\cite{Cytokegg}
 	
 	\subsection*{Software availability}
 	
@@ -492,11 +668,11 @@
 	\subsection*{Grant information}
 	
 	This work was funded by the FWF (“Fonds zur F{\"o}rderung der
-	wissenschaftlichen Forschung”) within the project Internationalen
-	Kooperationsprojektes - Intl cooperation Project (Joint Project - Lead
-	Agency Verfahren) with the project number (I 1988-B22). The grant was
-	assigned to ILH. FA was funded by the Austrian Science Fund (FWF) project
-	SFB F43.
+        wissenschaftlichen Forschung”) within the project
+        Internationalen Kooperationsprojektes - Intl cooperation
+        Project (Joint Project - Lead Agency Verfahren) with the
+        project number (I 1988-B22). The grant was assigned to ILH. FA
+        was funded by the Austrian Science Fund (FWF) project SFB F43.
 	
 	
 	{\small\bibliographystyle{unsrtnat}
@@ -539,12 +715,16 @@
 		\fbox{
 			\begin{minipage}{13 cm}
 				\includegraphics[width=13cm]{MSF_Robustness.png}
-				\caption{Shows the percentage of \texttt{MSF} identified sub-graph genes recall
-					rates for the three different time points of
-					EBOV infection data for 100 simulation where
-					Poisson distributed noise was added to the
-					experimental deduced reads per gene
-					counts.\label{fig:DEGvsMSF}}
+				\caption{\FA{Recall rates for genes in
+                                  }\sout{Shows the percentage of}
+                                  \texttt{MSF} identified sub-graph
+                                  \sout{genes recall rates} for the
+                                  three different time points of EBOV
+                                  infection data for 100
+                                  simulation\FA{s} where Poisson
+                                  distributed noise was added to the
+                                  experimental deduced reads per gene
+                                  counts.\label{fig:DEGvsMSF}}
 				\label{label}
 			\end{minipage}
 		}
@@ -568,7 +748,17 @@
 		\fbox{
 			\begin{minipage}{15 cm}
 				\includegraphics[width=1.01\linewidth]{ReactomeVsMSF.png}
-				\caption{The Upset plot shows the number of shared pathways between \texttt{MSF} identified sub-graph gene list and DEG cut-off list for the 3 time-points. All the different toll-like receptor cascades are shown to be in the bar with 164 shared pathways only between \texttt{MSF} at different time-points.}
+				\caption{The Upset plot shows the
+                                  number of shared pathways between
+                                  \texttt{MSF} identified sub-graph
+                                  gene list and DEG cut-off list for
+                                  the three time-points. All
+                                  \sout{the} \FA{XXX} different
+                                  toll-like receptor cascades are
+                                  \sout{shown to be} in the \FA{set
+                                    of}\sout{bar with} 164 shared
+                                  pathways only between \texttt{MSF}
+                                  at different time-points.}
 				\label{fig:msfvsreactome}
 			\end{minipage}
 		}
@@ -578,9 +768,11 @@
 	
 	\begin{table*}[]
 		\centering
-		\caption{Comparison of connected sub-graphs of modulated genes
-			in the global network identified after the analysis with
-			\texttt{MSF} and applying different \textit{p}-value cut-offs from edgeR to genes in MSF identified modulated sub-graphs. }
+		\caption{Comparison of connected sub-graphs of
+                  modulated genes in the global network identified
+                  after the analysis with \texttt{MSF} and applying
+                  different \textit{p}-value cut-offs from edgeR to
+                  genes in MSF identified modulated sub-graphs. }
 		\label{tab:rawVsHartung}
 		\begin{tabular}{lll}
 			\hline
