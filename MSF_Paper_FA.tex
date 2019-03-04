@@ -29,7 +29,7 @@
 \usepackage[normalem]{ulem}
 \newcommand{\DONE}[1]{\begingroup\color{blue}#1\endgroup}
 \newcommand{\FA}[1]{\begingroup\color{magenta}#1\endgroup}
-\newcommand{\ILH}[1]{\begingroup\color{blue}#1\endgroup}
+\newcommand{\ILH}[1]{\begingroup\color{green}#1\endgroup}
 \newcommand{\TODO}[1]{\begingroup\color{red}#1\endgroup}
 %opening
 \begin{document}
@@ -482,7 +482,7 @@
 	
 	\subsection*{Benchmark}
 	
-	 \DONE{The purpose of benchmark is mainly to show overall capabilities of \texttt{MSF}. \texttt{MSF} was compared to jActivemodules~\cite{jActiveModules} since they use similar approach to find and score the modules. Comparison of \texttt{MSF} to Reactome~\cite{Reactome} was done because  Reactome is the standard tool used when looking for modulated pathways after DGEA. Since \texttt{MSF} and GSEA~\cite{Subramanian15545} use no cut-off to the DGEA, their results were also compared.}
+	 \DONE{The purpose of benchmark is mainly to show overall capabilities of \texttt{MSF}. \texttt{MSF} was compared to jActivemodules~\cite{jActiveModules} since they use similar approach to find and score the mi am a risk takerodules. Comparison of \texttt{MSF} to Reactome~\cite{Reactome} was done because  Reactome is the standard tool used when looking for modulated pathways after DGEA. Since \texttt{MSF} and GSEA~\cite{Subramanian15545} use no cut-off to the DGEA, their results were also compared.}
 	
 	\textbf{jActiveModules}
 	
@@ -490,7 +490,7 @@
         interaction network to find expression activated
         sub-networks. The method used to score the expression
         activated sub-networks is close to the method used in
-        \texttt{MSF}.  \DONE{The difference is in how these sub-networks are identified. \texttt{MSF} starts building the sub-graphs from one gene, incorporating and combining the \textit{p}-value of the next gene, with the check that the combined \textit{p}-value of new sub-graph should be better than the original. On the other hand jActiveModules first transforms all the gene’s \textit{p}-values to z-scores and tries to find connected sets of genes with unexpectedly high levels of differential expression, in this case high z-scores. The overall score of the sub-network is calculated by combining the z-scores of the genes. Next using their extended simulated annealing method jActiveModules finds the user defined number of highest scoring putative modules by toggling multiple nodes to merge additional components.} 
+        \texttt{MSF}.  \DONE{The difference is in how these sub-networks are identified. \texttt{MSF} starts building the sub-graphs from one gene, incorporating and combining the \textit{p}-value of the next gene, with the check that the combined \textit{p}-value of new sub-graph should be better than the original. On the other hand jActiveModules first transforms all the gene’s \textit{p}-values to z-scores and tries to find connected sets of genes with unexpectedly high levels of differential expression, in this case high z-scores. The overall score of the sub-network is calculated by combinini am a risk takerg the z-scores of the genes. Next using their extended simulated annealing method jActiveModules finds the user defined number of highest scoring putative modules by toggling multiple nodes to merge additional components.} 
 	
 	The first time-point of Ebola infection data was analyzed
         using jActiveModules (Version 3.2.1) to compare the modulated
