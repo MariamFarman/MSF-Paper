@@ -1,6 +1,4 @@
-
 \begin{thebibliography}{23}
-
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -19,7 +17,6 @@ Purvesh Khatri, Marina Sirota, and Atul~J Butte.
   challenges.
 \newblock \emph{PLoS computational biology}, 8\penalty0 (2):\penalty0 e1002375,
   2012.
-
 
 \bibitem[Garc{\'\i}a-Campos et~al.(2015)Garc{\'\i}a-Campos,
   Espinal-Enr{\'\i}quez, and Hern{\'a}ndez-Lemus]{Campos}
@@ -43,16 +40,6 @@ Antonio Fabregat, Steven Jupe, Lisa Matthews, Konstantinos Sidiropoulos, Marc
 \newblock \emph{Nucleic acids research}, 46\penalty0 (Database issue):\penalty0
   D649, 2018.
 
-
-\bibitem[Schnoes et~al.(2013)Schnoes, Ream, Thorman, Babbitt, and
-  Friedberg]{schnoes2013biases}
-Alexandra~M Schnoes, David~C Ream, Alexander~W Thorman, Patricia~C Babbitt, and
-  Iddo Friedberg.
-\newblock Biases in the experimental annotations of protein function and their
-  effect on our understanding of protein function space.
-\newblock \emph{PLoS computational biology}, 9\penalty0 (5):\penalty0 e1003063,
-  2013.
-
 \bibitem[Bayerlov{\'a} et~al.(2015)Bayerlov{\'a}, Jung, Kramer, Klemm,
   Bleckmann, and Bei{\ss}barth]{Bayer}
 Michaela Bayerlov{\'a}, Klaus Jung, Frank Kramer, Florian Klemm, Annalen
@@ -60,6 +47,15 @@ Michaela Bayerlov{\'a}, Klaus Jung, Frank Kramer, Florian Klemm, Annalen
 \newblock Comparative study on gene set and pathway topology-based enrichment
   methods.
 \newblock \emph{BMC bioinformatics}, 16\penalty0 (1):\penalty0 334, 2015.
+
+\bibitem[Mitra et~al.(2013)Mitra, Carvunis, Ramesh, and
+  Ideker]{mitra_carvunis_ramesh_ideker_2013}
+Koyel Mitra, Anne-Ruxandra Carvunis, Sanath~Kumar Ramesh, and Trey Ideker.
+\newblock Integrative approaches for finding modular structure in biological
+  networks.
+\newblock \emph{Nature Reviews Genetics}, 14\penalty0 (10):\penalty0 719–732,
+  2013.
+\newblock \doi{10.1038/nrg3552}.
 
 \bibitem[Michalak(2008)]{Michalak}
 Pawel Michalak.
@@ -168,7 +164,6 @@ Veljko Veljkovic, Sanja Glisic, Claude~P Muller, Matthew Scotch, Donald~R
   extracellular matrix.
 \newblock \emph{Frontiers in microbiology}, 6:\penalty0 135, 2015.
 
-
 \bibitem[Ideker et~al.(2002)Ideker, O., B., and F.]{jActiveModules}
 Ozier Ideker, Schwikowski O., Siegel B., and A.~F.
 \newblock Discovering regulatory and signalling circuits in molecular
@@ -187,8 +182,5 @@ Aravind Subramanian, Pablo Tamayo, Vamsi~K. Mootha, Sayan Mukherjee,
 \newblock ISSN 0027-8424.
 \newblock \doi{10.1073/pnas.0506580102}.
 \newblock URL \url{https://www.pnas.org/content/102/43/15545}.
-
-\newblock \emph{Genome biology}, 15\penalty0 (12):\penalty0 550, 2014.
-
 
 \end{thebibliography}
