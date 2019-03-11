@@ -65,13 +65,17 @@
 		expressed gene and unaffected genes based on an arbitrarily set \textit{p}-value
 		cut-off.
 		
-		To overcome this limitation, we developed a novel approach to identify
-		concertedly modulated sub-graphs in the global cell signaling network,
-		based on the DGEA results of all genes tested. Thereby, expression patterns
-		of genes are integrated according to the topology of their interactions and
-		allow potentially to read the flow of information and identify the effectors. The described software, named \texttt{Modulated
-			Sub-graph Finder} (\texttt{MSF}) is freely available at
-		\url{https://github.com/Modulated-Subgraph-Finder/MSF}.
+		To overcome this limitation, we developed a novel
+                approach to identify concertedly modulated sub-graphs
+                in the global cell signaling network, based on the
+                DGEA results of all genes tested. To this end,
+                expression patterns of genes are integrated according
+                to the topology of their interactions and allow
+                potentially to read the flow of information and
+                identify the effectors. The described software, named
+                \texttt{Modulated Sub-graph Finder} (\texttt{MSF}) is
+                freely available at
+                \url{https://github.com/Modulated-Subgraph-Finder/MSF}.
 		
 	\end{abstract}
 	
@@ -115,24 +119,27 @@
 	genes and their interactions categorized into functional units.
 	
 	
-	Existing pathway-based analysis approaches use different research
-	designs, which can be categorized into ORA (Over-representation
-	analysis), FCS (Functional class scoring) and pathway topology based
-	methods. All of which aim to find a subset of genes, e.g.,
-	significantly differentially expressed genes, genes associated with a
-	certain pathway more often than expected given the total set of
-	examined genes, e.g.~the whole genome background. ORA is
-	the first and the most basic method of pathway analysis~\cite{Campos}. It uses a
-	DEG list with user defined cut-off for the log-fold change and
-	\textit{p}-value (most commonly using absolute log-fold change $\geq$
-	2 and \textit{p}-value $\leq$ 0.05). Subsequently, sets of genes
-	associated with annotated pathways are tested for being
-	over-represented in the set of DEGs. To this end, hyper-geometric
-	distribution, chi-square tests, binomial probability or the Fisher’s
-	exact test are used. Thereby the information of the topology of genes
-	in the pathways is neglected~\cite{Bayer}. Furthermore, ORA assumes
-	that the biological pathways are independent of each other and ignores
-	the fact that they cross-talk and overlap~\cite{Khatri2012,Campos}.
+	Existing pathway-based analysis approaches use different
+        research designs, which can be categorized into ORA
+        (Over-representation analysis), FCS (Functional class scoring)
+        and pathway topology based methods. All of which aim to find a
+        subset of genes, e.g., significantly differentially expressed
+        genes, genes associated with a certain pathway more often than
+        expected given the total set of examined genes, e.g.~the whole
+        genome background. ORA is the first and the most basic method
+        of pathway analysis~\cite{Campos}. It uses a DEG list with
+        user defined cut-off for the log-fold change and
+        \textit{p}-value (most commonly using absolute log-fold change
+        $\geq$ 2 and \textit{p}-value $\leq$ 0.05). Subsequently, sets
+        of genes associated with annotated pathways are tested for
+        being over-represented in the set of DEGs. To this end,
+        hyper-geometric distribution, chi-square tests, binomial
+        probability or the Fisher’s exact test are used, whereas, the
+        information of the topology of genes in the pathways is
+        neglected~\cite{Bayer}. Furthermore, ORA assumes that the
+        biological pathways are independent of each other and ignores
+        the fact that they cross-talk and
+        overlap~\cite{Khatri2012,Campos}.
 	
 	Unlike ORA, FCS has no artificial cut-off to define a DEG list. FCS works in
 	three steps. First it calculates the gene-level statistics including
@@ -148,7 +155,23 @@
 	topology of each gene during the gene-level statistics but still lacks to aim
 	to link the different functional pathways~\cite{Khatri2012}.
 	
-	From another perspective, network based approaches do not categorize sets of genes into functional pathways, but they consider all interactions to be equal. Thereby, they avoid distinguishing arbitrarily between interactions within a pathway and interactions between pathways (i.e., cross-talk). With this they aim to identify sub-networks that show modulation between two conditions or upon a stimuli~\cite{mitra_carvunis_ramesh_ideker_2013}. To find these active modules heuristics solutions like simulated annealing (SA), greedy methods, genetic algorithms (GA), network propagation and co-clustering methods are used~\cite{mitra_carvunis_ramesh_ideker_2013}. jActiveModules has been the first of this kind using simulated annealing to find the modulated sub-networks~\cite{jActiveModules}. The benefit of omitting pathways is bought by reduced interpretability of the results due to the lack of functional labels on the networks. 
+	From another perspective, network based approaches do not
+        categorize sets of genes into functional pathways, but they
+        consider all interactions to be equal. Thereby, they avoid
+        distinguishing arbitrarily between interactions within a
+        pathway and interactions between pathways (i.e.,
+        cross-talk). With this they aim to identify sub-networks that
+        show modulation between two conditions or upon a
+        stimuli~\cite{mitra_carvunis_ramesh_ideker_2013}. To find
+        these active modules heuristics solutions like simulated
+        annealing (SA), greedy methods, genetic algorithms (GA),
+        network propagation and co-clustering methods are
+        used~\cite{mitra_carvunis_ramesh_ideker_2013}. jActiveModules
+        has been the first of this kind using simulated annealing to
+        find modulated sub-networks~\cite{jActiveModules}. The benefit
+        of omitting pathways is bought by reduced interpretability of
+        the results due to the lack of functional labels on the
+        networks.
 		
     On these grounds we propose a novel approach to make use of the rich gene
 	and protein interaction annotation resources available and combining it to functional pathway annotations to gain additional insights from basic DGEA. To this, we start with the
@@ -171,62 +194,81 @@
 	of neighboring genes, which as a whole might exhibit prominent enough
 	signal to be called; again as a whole, significantly modulated. All of this can be helpful to understand the cause and effect of a stimulus and might inform about potential points of intervention.
 	
-	As input, information on functional links between genes provided by
-	e.g.~KEGG or Reactome and information on the differential expression status
-	of single genes resulting from a DGEA, are required. As a result the
-	analysis returns sub-graphs and their joint confidence scores, reflecting
-	how the perturbation is migrated through the network. Furthermore, the
-	entry points of perturbation in the networks and overlap with conventional
-	pathway categories are returned. These entry points are given impact scores showing the degree of perturbations introduced by them. The reliability of the entry points is checked using a t-test on the \textit{p}-values by investigating the significant difference between the downstream and upstream genes of each entry point. The output is prepared in a directed
-	adjacency file, convenient for visualization, e.g., with
-	StringApp~\cite{StringApp}, available as a Cytoscape plug-in~\cite{Cyto}.
+	As input, information on functional links between genes
+        provided by e.g.~KEGG or Reactome and information on the
+        differential expression status of single genes resulting from
+        a DGEA, are required. As a result the analysis returns
+        sub-graphs and their joint confidence scores, reflecting how
+        the perturbation migrates through the network. Furthermore,
+        the entry points of perturbation in the networks and overlap
+        with conventional pathway categories are returned. To
+        facilitate prioritization of the perturbation entry points, to
+        each a impact score and a measure of its reliability is
+        assigned. The impact score expresses the fraction of the
+        sub-module being downstream of the entry point. The
+        reliability is measured using a t-test on the
+        \textit{p}-values of the immediate upstream and downstream
+        genes. The output is prepared in a directed adjacency file,
+        convenient for visualization, e.g., with
+        StringApp~\cite{StringApp}, available as a Cytoscape
+        plug-in~\cite{Cyto}.
 	
-	The proposed algorithm is named
-	\texttt{Modulated Sub-graph Finder} (abbreviated
-	\texttt{MSF}). \texttt{MSF} can help transform the information obtained
-	from DGEA into comprehensible knowledge of signal transduction of genes and
-	thereby being a valuable complement to existing pathway based
-	methods. \texttt{MSF} is freely accessible on git hub under the terms of the
-	Creative Commons Attribution 4.0 International License.
+	The proposed algorithm is named \texttt{Modulated Sub-graph
+          Finder} (abbreviated \texttt{MSF}). \texttt{MSF} can help
+        transform the information obtained from DGEA into
+        comprehensible knowledge of signal transduction of genes,
+        hence being a valuable complement to existing pathway based
+        methods. \texttt{MSF} is freely accessible on git hub under
+        the terms of the Creative Commons Attribution 4.0
+        International License.
 	
 	
 	\section*{Methods}
 	
-	\texttt{MSF} was implemented as a java program. It is developed as a novel heuristic approach to find concertedly
-	modulated sub-graphs in networks of biological interactions. \texttt{MSF}
-	does not use predefined gene sets grouped into functional units, but rather
-	relies purely on the network of interacting genes. The input network
-	consists of nodes corresponding to genes and edges representing
-	interactions. Furthermore it utilizes comprehensive results from a
-	differential gene expression analysis to discover the sub-graphs, or
-	modules, which are as a whole modulated.
+	\texttt{MSF} was implemented as a Java program. It is
+        developed as a novel heuristic approach to find concertedly
+        modulated sub-graphs in networks of biological
+        interactions. \texttt{MSF} does not use predefined gene sets
+        grouped into functional units, but rather relies purely on the
+        network of interacting genes. The input network consists of
+        nodes corresponding to genes and edges representing
+        interactions. Furthermore it utilizes comprehensive results
+        from a differential gene expression analysis to discover the
+        sub-graphs, or modules, which are as a whole modulated.
 	
-	\texttt{MSF} uses the individual gene's \textit{p}-values generated from
-	the DGEA. The \textit{p}-value expresses the probability that the null
-	hypothesis of unmodified gene expression can't be rejected for a given
-	statistical model. To find significantly modulated sub-graphs individual
-	\textit{p}-values of the vicinal genes in the global network are combined
-	into a single combined \textit{p}-value, using a statistical method for
-	combining dependent \textit{p}-values described by
-	Hartung~\cite{Hartung}. Hartung's method uses the inverse of standard
-	normal distribution function. Using the inverse normal cumulative distribution function $\Phi^{-1}$, individual gene \textit{p}-values $T_{i}$ are 
-	transformed to their corresponding normal score $t_{i}=\Phi^{-1}(1-T_{i})$ that is uniformly distributed on (0,1). Then using these normal
-	scores, the correlation between genes is calculated $Cov(t_{i},t_{j})=\rho$. The normal scores and
-	correlation are applied to the weighted inverse normal function to calculate the
-	combined \textit{p}-value $t(\rho)$ for all genes examined, namely the examined
-	sub-graph
+	\texttt{MSF} uses the individual gene's \textit{p}-values
+        generated from the DGEA. The \textit{p}-value expresses the
+        probability that the null hypothesis of unmodified gene
+        expression can't be rejected for a given statistical model. To
+        find significantly modulated sub-graphs individual
+        \textit{p}-values of the vicinal genes in the global network
+        are combined into a single combined \textit{p}-value, using a
+        statistical method for combining dependent \textit{p}-values
+        described by Hartung~\cite{Hartung}. Hartung's method uses the
+        inverse of standard normal distribution function. Using the
+        inverse normal cumulative distribution function $\Phi^{-1}$,
+        individual gene \textit{p}-values $T_{i}$ are transformed to
+        their corresponding normal score $t_{i}=\Phi^{-1}(1-T_{i})$
+        that is uniformly distributed on (0,1). Then using these
+        normal scores, the correlation between genes is calculated
+        $Cov(t_{i},t_{j})=\rho$. The normal scores and correlation are
+        applied to the weighted inverse normal function to calculate
+        the combined \textit{p}-value $t(\rho)$ for all genes
+        examined, namely the examined sub-graph
 	\newline
 	\begin{center}
 		$t(\rho)=\frac{\sum_{i=1}^{n}\lambda_i t_{i} }{\sqrt{(1-\rho) \sum_{i=1}^{n} \lambda^{2}+\rho(\sum_{i=1}^{n} \lambda_i)^{2}}}$
 	\end{center}
 	
-	Lambda $\lambda$ be the weights for each gene, currently all genes have equal weight i.e. 1. The combined \textit{p}-value  $t(\rho)$ of a sub-graph will express the
-	significance of all genes in the sub-graph being modulated
-	together. Thereby, the information from the different genes are used as,
-	although not independent, replicated measurement of the behavior of the
-	whole sub-graph. This potentially increases the power to detect also
-	significant sub-graphs consisting of genes which are not significant on
-	there own.
+	Lambda $\lambda$ be the weights for each gene, currently all
+        genes have equal weight, i.e.~1. The combined \textit{p}-value
+        $t(\rho)$ of a sub-graph will express the significance of all
+        genes in the sub-graph being modulated together. The
+        information from the different genes are used as, although not
+        independent, replicated measurement of the behavior of the
+        whole sub-graph. This potentially increases the power to
+        detect also significant sub-graphs consisting of genes which
+        are not significant on there own.
 
 	
 	\subsection*{Overview of our method}
@@ -294,16 +336,21 @@
         points of perturbation from where the stimulus causes
         downstream effects. Each individual source is given an impact
         score, expressing the relative number of downstream genes
-          within the corresponding sub-graph directly connected by
-          directed links. This score can be interpreted as an upper
-          limit of how much of the sub-graph's perturbation could have
-          been introduced by the respective source, and thereby could
-          be helpful to prioritize different identified sources for
-          larger sub-graphs. In the same
-        spirit as sources, the most downstream genes of the
-        modulated sub-graphs are identified and defined as sinks. Due
-        to loops not all sub-graphs are guaranteed to have sources or
-        sinks. The reliability of each source is inspected using a t-test on the \textit{p}-values . The significant difference between the two groups, genes downstream the source to the genes upstream of the source is determined. This would help to assess if the source identified is reliable and marks the border between two different regulation regimes.
+        within the corresponding sub-graph directly connected by
+        directed links. This score can be interpreted as an upper
+        limit of how much of the sub-graph's perturbation could have
+        been introduced by the respective source, and thereby could be
+        helpful to prioritize different identified sources for larger
+        sub-graphs. In the same spirit as sources, the most downstream
+        genes of the modulated sub-graphs are identified and defined
+        as sinks. Due to loops not all sub-graphs are guaranteed to
+        have sources or sinks. The reliability of each source is
+        inspected using a t-test on the \textit{p}-values . The
+        significant difference between the two groups, genes
+        downstream the source to the genes upstream of the source is
+        determined. This would help to assess if the source identified
+        is reliable and indeed marks the border between two different
+        regulation regimes.
 	
 	
 	\textbf{MSF output}
@@ -311,12 +358,12 @@
 	\texttt{MSF} generates a directed network file as an output,
         containing complete directed interactions of all modulated
         sub-graphs identified. This file could be imported into
-        Cytoscape~\cite{Cyto} for visualization. Additionally, a
-          file containing details on all sources and sinks for all
-          modulated sub-graphs is reported. Furthermore, for
-          facilitated visualization in Cytoscape, a node attribute
-          file is provided, containing the source weight-age and the
-          log-fold chances of all considered genes.
+        Cytoscape~\cite{Cyto} for visualization. Additionally, a file
+        containing details on all sources and sinks for all modulated
+        sub-graphs is reported. Furthermore, for facilitated
+        visualization in Cytoscape, a node attribute file is provided,
+        containing the source weightage and the log-fold chances of
+        all considered genes.
 	
 	\textbf{Operation}
 	
@@ -352,7 +399,7 @@
         infection data was selected to test the approach because it
         has been well recognized for the last several decades, and
         vast literature is available for the pathogenesis of Ebola,
-        thereby, facilitating the verification of the results of
+        hence facilitating the verification of the results of
         \texttt{MSF} with the vast literature present on Ebola
         infection. Especially, the detection of IFN-$\alpha / \beta$
         as point of action for the virus, could be considered as a
@@ -410,7 +457,7 @@
         their total genes numbers, to a simple analysis of mapping
         significantly modulated genes from the DGEA to the network and
         joining neighbors to modules. The numbers indicate that
-        \texttt{MSF} detects less but larger and interpretable
+        \texttt{MSF} detects less but larger and easier interpretable
         sub-modules, applying its statistical test. Furthermore, the
         dependency of the results from the \textit{p}-value cutoff
         choice is demonstrated for the DGEA, which is avoided for
@@ -455,7 +502,7 @@
         and suggest testable hypothesis and potential points of
         intervention.
 	
-	\subsection*{Robustness}Gene set enrichment analysis
+	\subsection*{Robustness}\sout{Gene set enrichment analysis}
 	
 	A potential concern is how noise in the gene expression
         measurements affects our analysis. To assess the robustness
@@ -473,7 +520,7 @@
         modeled can be considered as rather stringent as \texttt{MSF}
         is sensitive to \textit{p}-value changes across the whole
         range of possible values. The observed median recall rates lay
-        between 71~\% (6~hpi) and 84~\% (48~hpi).Gene set enrichment analysis
+        between 71~\% (6~hpi) and 84~\% (48~hpi).\sout{Gene set enrichment analysis}
 	
 	\subsection*{Benchmark}
 	
@@ -516,13 +563,13 @@
         and the DEG list analysis is shown in
         Fig~\ref{fig:msfvsreactome}
 	
-	All enriched pathways with a cut-off of \textit{p}-value
-        < 0.05 for \texttt{MSF} and DEG list for the
-        three time-points were selected. The comparison shows most of
-        the pathways known from literature to be dis-regulated by
-        Ebola infection are enriched in both the enrichment
-        analysis. Toll-Like receptor signaling pathway when interacts
-        with EBOV glycoprotein (GP), it triggers the activation of
+	All enriched pathways with a cut-off of \textit{p}-value <
+        0.05 for \texttt{MSF} and DEG list for the three time-points
+        were selected. The comparison shows most of the pathways known
+        from literature to be dis-regulated by Ebola infection are
+        enriched in both the enrichment analysis. Toll-like receptor
+        signaling pathway when interacts with EBOV glycoprotein (GP)\TODO{???},
+        it triggers the activation of
         cytokines~\cite{Olejnik}. Toll-like receptor pathway is
         expected to be dis-regulated in the early stage of infection,
         this pathway was not identified as significantly dis-regulated
@@ -553,10 +600,10 @@
         cytosolic DNA-sensing pathway, Jak-STAT signaling pathway,
         RIG-I-like receptor signaling pathway and apoptosis as the
         highest ranked pathways. Although GSEA identified the
-        important pathways for Ebola infection, it did not show how
+        important pathways for Ebola infection, it did not show how \TODO{???}
         the cross-talk and topology of genes between the pathways
         identified. \texttt{MSF} and GSEA uses complete DEG list
-        without any cut-off, is why pathways important for Ebola
+        without any cut-off, \TODO{????} is why pathways important for Ebola
         infection showed up even with weak signal genes in it.
 	
 	\section*{Discussion}
@@ -595,7 +642,7 @@
 	
 	\texttt{MSF} is a fast and easy to use tool to find
         concertedly modulated sub-graphs in a given network. Its
-        implementation in java enables its use across many operating
+        implementation in Java enables its use across many operating
         systems e.g. linux and windows. So far the raw output from
         edgeR~\cite{edgeR} and DESeq2~\cite{love2014moderated} are
         supported.
